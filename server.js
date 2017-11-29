@@ -6,7 +6,7 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname + '/index.html'))
 })
 
-app.get('/messagez', (req, res) => {
+app.get('/message', (req, res) => {
     res.send('message')
 })
 
