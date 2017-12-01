@@ -1,8 +1,127 @@
+@font-face {
+  font-family: consoleFont;
+  src: url(./fonts/Ubuntu-L.ttf);
+}
+
 .App {
   text-align: center;
+  height: 100%;
+}
+
+.App-Console {
+  background-size: cover;
+  width: 30%;
+  height: 95vh;
+  margin: 2vh;
+  border-style: solid;
+  border-width: 0.05em;
+  border-color: blue;
+  box-shadow: -3px 5px 13px 4px grey;
+}
+
+.App-Header {
+  background: #ffffff;
+  width: 100%;
+  height: 3.8%;
+  margin: 0.05vh auto;
+  clear: none;
+}
+
+.App-Header img {
+  height: 80%;
+  float: left;
+  margin-left: 10%;
+  margin-top: 0.5%;
+}
+
+.App-Header p {
+  color: black;
+  font-family: consoleFont;
+  font-size: 2.4vh;
+  float: left;
+  margin: 0.5% auto;
+  margin-left: 5%;
+}
+
+.App-Body {
+  width: 100%;
+  height: 92.2%;
+  background: #000;
+  overflow: auto;
+}
+
+.App-Footer {
+  width: 100%;
+  height: 4%;
+  background: #000;
+  color: white;
+  overflow: auto;
+  clear: none;
+  font-family: consoleFont;
+  overflow: hidden;
+}
+
+.App-Footer p {
+  font-size: 1.9vh;
+  float: left;
+  font-family: consoleFont;
+  margin: 0 auto;
+  margin-left: 2%;
+  margin-top: 1%;
+}
+
+.App-Footer textarea {
+  font-family: consoleFont;
+  width: 90%;
+  border: none;
+  float: left;
+  height: 90%;
+  color: white;
+  font-size: 1.9vh;
+  background: #000;
+  margin: 0 auto;
+  margin-left: 2%;
+  resize: none;
+  overflow: hidden;
+}
+
+.App-Footer textarea:focus {
+  outline: none;
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .App-Console {
+    width: 40%;
+    border-width: 0.04em;
+  }
+  .App-Header {
+    background: #ffffff;
+    height: 3.9%;
+  }
+  .App-Body {
+    height: 96.1%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .App-Console {
+    width: 50%;
+    border-width: 0.02em;
+  }
+  .App-Header {
+    background: #ffffff;
+    height: 4.2%;
+  }
+  .App-Body {
+    height: 95.8%;
+  }
 }
