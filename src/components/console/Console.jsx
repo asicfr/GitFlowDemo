@@ -3,7 +3,7 @@ import '../../css/App.css'
 import Headers from './Headers'
 import Body from './Body'
 import Input from './Input'
-import analyse from '../../js/analyse.js'
+import controller from '../../js/controller.js'
 
 export class Console extends Component {
 
@@ -12,11 +12,15 @@ export class Console extends Component {
         this.state = {arrayText: []}
     }
 
+    componentWillReceiveProps(newProps) {
+        this.setState({command: newProps.command})
+        console.log(this.state.command)
+        this.state.arrayText.push(this.state.command)
+        this.setState(this.state.arrayText)
+    }
+
     handleConsole = (textValue) => {
-        const command = analyse(textValue)
-        console.log(textValue)
-        this.state.arrayText.push(textValue)
-        this.setState(this.state.arrayText);
+        this.props.onConsole(textValue)
     }
 
     render() {

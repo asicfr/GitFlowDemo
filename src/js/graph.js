@@ -10,10 +10,7 @@ module.exports = {
     },
 
     addCommit: (graph) => {
-        const last = graph.tree[graph.tree.length - 1]
-        const newNumber = parseInt(last.split('')[1]) + 1
-        const newCommit = "C" + newNumber
-        graph.tree.push(newCommit)
+        graph.tree.push("C" + (parseInt(graph.tree[graph.tree.length - 1].split('')[1]) + 1))
         return graph
     },
 
