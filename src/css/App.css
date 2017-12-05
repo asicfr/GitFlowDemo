@@ -6,6 +6,7 @@
 .App {
   text-align: center;
   height: 100%;
+  clear: none;
 }
 
 .App-Console {
@@ -13,6 +14,7 @@
   background-size: cover;
   width: 30%;
   height: 95vh;
+  float: left;
   margin: 2vh;
   border-style: solid;
   border-width: 0.05em;
@@ -28,11 +30,16 @@
   clear: none;
 }
 
+
 .App-Header img {
   height: 80%;
   float: left;
   margin-left: 10%;
   margin-top: 0.5%;
+  -webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+  user-select: none;  
 }
 
 .App-Header p {
@@ -42,6 +49,10 @@
   float: left;
   margin: 0.5% auto;
   margin-left: 5%;
+  -webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+  user-select: none;  
 }
 
 .App-Body {
@@ -70,6 +81,13 @@
   margin-top: 1%;
 }
 
+.dollars {
+  -webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+  user-select: none;  
+}
+
 .App-Footer {
   width: 100%;
   height: 4%;
@@ -88,6 +106,10 @@
   font-family: consoleFont;
   margin: 0 auto;
   margin-left: 2%;
+  -webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+  user-select: none;  
   margin-top: 1%;
 }
 
@@ -110,6 +132,12 @@
   outline: none;
 }
 
+
+.App-Graph {
+  height: 100%;
+  padding-top: 3vh;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -130,6 +158,7 @@
   }
   .App-Body {
     height: 96.1%;
+    float: left;    
   }
 }
 

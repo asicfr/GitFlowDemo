@@ -6,7 +6,7 @@ export class Body extends Component {
     consoleText = () => {
         return this.props.data.map((text, i) => {
             return (
-                <li key={i}><p>$</p><p>{text}</p></li>
+                <li key={i}><p className="dollars">$</p><p>{text}</p></li>
             )
         })
     }

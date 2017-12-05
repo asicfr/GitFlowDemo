@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import '../../css/App.css'
 import Headers from './Headers'
 import Body from './Body'
 import Input from './Input'
@@ -13,10 +12,7 @@ export class Console extends Component {
     }
 
     componentWillReceiveProps(newProps) {
-        this.setState({command: newProps.command})
-        console.log(this.state.command)
-        this.state.arrayText.push(this.state.command)
-        this.setState(this.state.arrayText)
+        this.state.arrayText.push(newProps.command)
     }
 
     handleConsole = (textValue) => {
