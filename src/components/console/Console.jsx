@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import Headers from './Headers'
 import Body from './Body'
 import Input from './Input'
-import controller from '../../js/controller.js'
 
 export class Console extends Component {
 

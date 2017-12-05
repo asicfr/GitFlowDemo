@@ -1,16 +1,20 @@
 const graph = require('../src/js/graph.js')
 
 const graphInit = {
-    tree: ['C1'],
+    tree: {0: {commit: 'C1', child: {}},
     master: ""
+    }
 }
 
 const graphFinale = {
-    tree: [
-        'C1', 'C2'
-    ],
+    tree: {0: {commit: 'C1', child: {
+        commit: 'C1', child: {}
+        }
+    },
     master: ""
+    }
 }
+
 
 test('graph', () => {
     expect(graph.init()).toEqual(graphInit);

@@ -1,17 +1,19 @@
 const controller = require('../src/js/controller.js')
 
 const graphInit = {
-    tree: ['C1'],
+    tree: {0: {commit: 'C1', child: {}},
     master: ""
+    }
 }
 
 const graphFinale = {
-    tree: [
-        'C1', 'C2'
-    ],
+    tree: {0: {commit: 'C1', child: {
+        commit: 'C1', child: {}
+        }
+    },
     master: ""
+    }
 }
-
 
 
 test('git push', () => {
@@ -27,5 +29,5 @@ test('git commit', () => {
 })
 
 test('git invalid command', () => {
-    expect(controller.dataControl("a", graphInit)).toEqual({graph: graphFinale, command: "Invalid Command"});
+    expect(controller.dataControl("a", graphInit)).toEqual({graph: graphInit, command: "Invalid Command"});
 })

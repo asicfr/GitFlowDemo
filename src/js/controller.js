@@ -18,7 +18,6 @@ module.exports = {
     init : () => {
         return graph.init()
     }
-
 }
 
 const pushFn = (g) => {
