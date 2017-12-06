@@ -5,9 +5,9 @@
 }
 
 .bulleCommit {
-    line-height: 10vh;
-	width: 10vh;
-	height: 10vh;
+    line-height: 5vh;
+	width: 5vh;
+	height: 5vh;
     text-align: center;
     margin: 0 auto;
     border-style: solid;
@@ -16,27 +16,5 @@
 	-webkit-border-radius: 50px;
     border-radius: 50px;
     list-style-type: none;
+    margin-bottom: 3vh;
 }
-
-li:not(:last-child):after {
-    content: '';
-    height: 1px;
-    background: black;
-    width: 50px;
-    position: absolute;
-    right: -50px;
-    top: 50%;
-  }
-  li:not(:last-child):before {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 0;
-    top: 50%;
-    border-style: solid;
-    border-width: 7px 0 7px 20px;
-    border-color: transparent transparent transparent black;
-    right: -50px;
-    transform: translateY(-50%);
-  }
-  
