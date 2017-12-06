@@ -6,7 +6,7 @@ export class Body extends Component {
     consoleText = () => {
         return this.props.data.map((text, i) => {
             return (
-                <li key={i}>{text}</li>
+                <li key={i}><p className="dollars">$</p><p>{text}</p></li>
             )
         })
     }
@@ -14,7 +14,6 @@ export class Body extends Component {
     render() {
 
         const tab = this.consoleText()
-        console.log(tab)
         return (
             <div className="App-Body">
                 {tab}

@@ -1,9 +1,7 @@
 import React, {Component} from 'react'
-import '../../css/App.css'
 import Headers from './Headers'
 import Body from './Body'
 import Input from './Input'
-import analyse from '../../js/analyse.js'
 
 export class Console extends Component {
 
@@ -12,11 +10,12 @@ export class Console extends Component {
         this.state = {arrayText: []}
     }
 
+    componentWillReceiveProps(newProps) {
+        this.state.arrayText.push(newProps.command)
+    }
+
     handleConsole = (textValue) => {
-        const command = analyse(textValue)
-        console.log(textValue)
-        this.state.arrayText.push(textValue)
-        this.setState(this.state.arrayText);
+        this.props.onConsole(textValue)
     }
 
     render() {
