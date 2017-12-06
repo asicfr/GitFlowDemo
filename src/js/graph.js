@@ -1,7 +1,8 @@
 const graphInit = {
     tree: [{ commit: 'C0', parent:[], child: []}],
     master: '',
-    currentCm: 'C0'
+    currentCm: 'C0',
+    lastCm: 'C0'
 }
 
 module.exports = {
@@ -11,12 +12,26 @@ module.exports = {
     },
 
     addCommit: (graph) => {
-        const parent = graph.currentCm
-        const lastCommit = graph.tree.pop()
-        console.log(lastCommit)
-        const newCommit = {commit: child, parent:[], child: [] }
+        const newCommit = {commit: "C" + (parseInt(graph.lastCm.split('')[1], 2) + 1), parent:[graph.currentCm], child: [] }
+        graph.tree = updateTreeGraph(graph.tree, newCommit, graph.currentCm)
+        graph.currentCm = newCommit.commit
+        graph.lastCm = newCommit.commit
         return graph
     },
 }
 
-// "C" + (parseInt(graph.tree[graph.tree.length - 1].split('')[1]) + 1)
+//Fn Commit
+const updateTreeGraph = (tree, n, c) => {
+    tree = addCommitToTree(tree, n), addChildToParent(c, n.commit, tree)
+    return tree
+}
+
+const addChildToParent = (p, c, t) => { 
+    const treeParent = t.indexOf(t.find(o => o.commit === p))
+    t[treeParent].child = addCommitToTree(t[treeParent].child, c)
+    return t
+}
+
+const addCommitToTree = (arr, newEntry) => {
+    return [ ...arr, newEntry ]      
+}

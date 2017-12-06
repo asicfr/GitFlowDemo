@@ -134,8 +134,9 @@
 
 
 .App-Graph {
-  height: 100%;
+  width: 65%;
   padding-top: 3vh;
+  float: left;
 }
 
 @keyframes App-logo-spin {

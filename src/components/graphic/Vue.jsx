@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import '../../css/Flow.css'
 
 export class Vue extends Component {
 
@@ -17,18 +18,20 @@ export class Vue extends Component {
     }
 
     fnGraph() {
-        return this.state.graph.tree.map((commit, i) => {
+        return this.state.graph.tree.map((c, i) => {
             return (
-                <li key={i}>{commit}</li>
+                <li className="bulleCommit" key={i}>{c.commit}</li>
             )
         })
     }
-
+    
     render() {
         const graphRender =  this.fnGraph()
         return (
             <div className='App-Graph'>
-                {graphRender}
+                <div className='Flow'>
+                    {graphRender}
+                </div>
             </div>
         )
     }

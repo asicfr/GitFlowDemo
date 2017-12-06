@@ -1,7 +1,8 @@
 
 const analyse = (txt) => {
-    const newTxt = txt.substring(4);
-    return newTxt   
+    txt = txt.substring(4);
+    txt = txt.replace(/ +/g, ""); 
+    return txt   
 }
 
 module.exports = analyse;

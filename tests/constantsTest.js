@@ -2,7 +2,8 @@ module.exports = {
     graphInit : {
         tree: [{ commit: 'C0', parent:[], child: []}],
         master: '',
-        currentCm: 'C0'
+        currentCm: 'C0',
+        lastCm: 'C0'
     },
     
     graphFinale : {
@@ -10,7 +11,8 @@ module.exports = {
                 {commit: 'C1', parent:['C0'], child: [] }
         ],
         master: '',
-        currentCm: 'C0'        
+        currentCm: 'C1',
+        lastCm: 'C1'  
     },
 
     graphFinaleDeux : {
@@ -19,7 +21,8 @@ module.exports = {
                 {commit: 'C2', parent:['C0'], child: [] }
         ],
         master: '',
-        currentCm: 'C1'        
+        currentCm: 'C2',
+        lastCm: 'C2'
     },
 }
 
