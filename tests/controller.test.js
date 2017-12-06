@@ -3,9 +3,6 @@ const constant = require('./constantsTest.js')
 
 
 
-test('git push', () => {
-    expect(controller.dataControl("git push",constant.graphInit)).toEqual(({graph: constant.graphInit, command: "git push"}));
-})
 
 test('git init', () => {
     expect(controller.init()).toEqual(constant.graphInit);
@@ -19,6 +16,10 @@ test('git invalid command', () => {
     expect(controller.dataControl("a", constant.graphInit)).toEqual({graph: constant.graphInit, command: "Invalid Command"});
 })
 
-test('git invalid command', () => {
+test('git invalid command 2', () => {
     expect(controller.dataControl("git yolo", constant.graphInit)).toEqual({graph: constant.graphInit, command: "Invalid Command"});
+})
+
+test('git push', () => {
+    expect(controller.dataControl("git push",constant.graphFinale)).toEqual(({graph: constant.graphPush, command: "git push"}));
 })
