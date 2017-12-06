@@ -1,25 +1,10 @@
 const graph = require('../src/js/graph.js')
-
-const graphInit = {
-    tree: {0: {commit: 'C1', child: {}},
-    master: ""
-    }
-}
-
-const graphFinale = {
-    tree: {0: {commit: 'C1', child: {
-        commit: 'C1', child: {}
-        }
-    },
-    master: ""
-    }
-}
-
+const constant = require('./constantsTest.js')
 
 test('graph', () => {
-    expect(graph.init()).toEqual(graphInit);
+    expect(graph.init()).toEqual(constant.graphInit);
 })
 
-test('graph', () => {
-    expect(graph.addCommit(graphInit)).toEqual(graphFinale);
+test('graphAddCommit', () => {
+    expect(graph.addCommit(constant.graphInit)).toEqual(constant.graphFinale);
 })

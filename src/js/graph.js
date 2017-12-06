@@ -1,6 +1,7 @@
 const graphInit = {
-    tree: {0: 'C1'},
-    master: ""
+        tree: [{ commit: 'C0', parent:[], child: []}],
+        master: '',
+        currentCm: ''
 }
 
 module.exports = {
@@ -10,9 +11,13 @@ module.exports = {
     },
 
     addCommit: (graph) => {
-        console.log(graph)
-        const numCommit = [ ...graph.tree, "C" + (parseInt(graph.tree[graph.tree.length - 1].split('')[1]) + 1) ] 
+        const parent = graph.currentCm
+        const child = graph.tree.map((obj, i) => {
+            console.log(obj)
+        })
+        const newCommit = {commit: child, parent:[], child: [] }
         return graph
     },
-
 }
+
+// "C" + (parseInt(graph.tree[graph.tree.length - 1].split('')[1]) + 1)
