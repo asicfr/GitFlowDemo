@@ -1,10 +1,10 @@
 .Flow {  
     text-align: center;
-    width: 50%;
+    width: 30%;
     margin: 0 auto;
 }
 
-.bulleCommit {
+.Commit {
     line-height: 5vh;
 	width: 5vh;
 	height: 5vh;
@@ -17,4 +17,11 @@
     border-radius: 50px;
     list-style-type: none;
     margin-bottom: 3vh;
+}
+
+.branch {
+    color: red; 
+    font-size: 1.8vh;
+    position: absolute;
+    margin-left: 25vh;
 }

@@ -1,6 +1,10 @@
 const graphInit = {
     tree: [{ commit: 'C0', parent:[], child: []}],
-    master: 'C0',
+    branch: {
+        master:'C0',
+        develop:'C0'
+    },
+    currentBr:'develop',
     currentCm: 'C0',
     lastCm: 'C0'
 }
@@ -14,11 +18,20 @@ module.exports = {
     addCommit: (graph) => {
         const splitNumber = graph.lastCm.split(/(\d+)/)
         const newCommit = {commit: "C" + (parseInt(splitNumber[1]) + 1), parent:[graph.currentCm], child: [] }
-        graph.tree = updateTreeGraph(graph.tree, newCommit, graph.currentCm)
-        graph.currentCm = newCommit.commit
-        graph.lastCm = newCommit.commit
-        return graph
+        return Object.assign({}, graph, {
+			tree : updateTreeGraph(graph.tree, newCommit, graph.currentCm),
+			currentCm : newCommit.commit,
+            lastCm : newCommit.commit,
+            branch : updateBranch(graph.branch, graph.currentBr, newCommit.commit)
+		})
     },
+
+    checkout: (g, t) => {
+        return Object.assign({}, g, {
+            currentBr: t[1],
+            currentCm: checkCommitBranch(g, t[1])
+        })
+    }
 }
 
 //fn Commit
@@ -37,7 +50,22 @@ const addCommitToTree = (arr, newEntry) => {
     return [ ...arr, newEntry ]      
 }
 
+const updateBranch = (branch, cb, nc) => {
+    function checkBranch(branch) {
+        return branch === cb;
+    }
+    const arrayBranch = Object.keys(branch)
+    branch[arrayBranch.find(checkBranch)] = nc
+    return branch
+}
+
 //fn Push
+
+//fn checkout
+
+const checkCommitBranch = (g, t) => {
+    return g.branch[t]   
+}
 
 
 

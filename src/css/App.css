@@ -10,16 +10,13 @@
 }
 
 .App-Console {
-  transition: ease 2s;
   background-size: cover;
   width: 30%;
   height: 93vh;
   float: left;
   margin: 2vh;
-  border-style: solid;
-  border-width: 0.05em;
-  border-color: blue;
-  box-shadow: -3px 5px 13px 4px grey;
+  box-shadow: -0.5vh 0.5vh 4vh 0.4vh grey;
+  z-index : 1;
 }
 
 .App-Header {
@@ -31,16 +28,27 @@
 }
 
 
-.App-Header img {
+.imgHeaders {
   height: 80%;
   float: left;
-  margin-left: 10%;
   margin-top: 0.5%;
   -webkit-user-select: none;  /* Chrome all / Safari all */
   -moz-user-select: none;     /* Firefox all */
   -ms-user-select: none;      /* IE 10+ */
   user-select: none;  
 }
+
+.imgClose {
+  opacity: 0.8;
+  float: right;
+  margin-right: 1vh;
+}
+
+.imgGit {
+  margin-left: 10%; 
+}
+
+
 
 .App-Header p {
   color: black;
@@ -101,7 +109,7 @@
 
 .App-Footer p {
   opacity: 0.8;
-  font-size: 1.5h;
+  font-size: 1.9vh;
   float: left;
   font-family: consoleFont;
   margin: 0 auto;
@@ -121,7 +129,7 @@
   float: left;
   height: 90%;
   color: white;
-  font-size: 1.5h;
+  font-size: 1.9vh;
   background: #000;
   margin: 0 auto;
   margin-left: 2%;
@@ -132,26 +140,16 @@
   outline: none;
 }
 
-
 .App-Graph {
   width: 65%;
   padding-top: 3vh;
   float: left;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  font-size: 1.9vh;
 }
 
 @media screen and (max-width: 1200px) {
   .App-Console {
     width: 40%;
-    border-width: 0.04em;
   }
   .App-Header {
     background: #ffffff;
@@ -161,12 +159,16 @@
     height: 96.1%;
     float: left;    
   }
+  .App-Graph {
+    width: 55%;
+  }
+ 
 }
 
 @media screen and (max-width: 800px) {
   .App-Console {
-    width: 50%;
-    border-width: 0.02em;
+    width: 40%;
+    height: 91vh;
   }
   .App-Header {
     background: #ffffff;
@@ -175,4 +177,34 @@
   .App-Body {
     height: 95.8%;
   }
+  .App-Graph {
+    width: 55%;
+  }
+ 
+}
+
+
+@media screen and (max-width: 500px) {
+  .App-Console {
+    width: 95%;
+    height: 91vh;
+  }
+  .App-Header {
+    background: #ffffff;
+    height: 4.2%;
+  }
+  .App-Body {
+    height: 95.8%;
+  }
+  .App-Graph {
+    width: 100%;
+  }
+  .imgClose {
+    margin-left: 10%
+  }
+}
+
+
+@media screen and (min-width: 1950px) {
+  
 }

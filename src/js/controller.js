@@ -5,13 +5,13 @@ module.exports = {
     dataControl : (t, g) => {
         const txtCommand = analyse(t)
         try {
-            return {graph: command[txtCommand](g), command: t}
+            if(typeof command[txtCommand[0]] !== "function") {
+               throw new Error("Invalid Command")
+            }
+            return {graph: command[txtCommand[0]](g, txtCommand), command: t}
         } 
         catch (error) {
-            if(typeof command[txtCommand] !== "function")
-            {
-                return {graph: g, command: "Invalid Command"}
-            }
+            return {graph: g, command: error.message    }  
         }
     },
     
@@ -24,13 +24,21 @@ const pushFn = (g) => {
     return g
 }
 
-const commitFn = (g) => {
+const commitFn = (g, t) => {
+    if(t.length > 1)
+        throw new Error('Invalid argument')
+
     return graph.addCommit(g)
+}
+
+const checkoutFn = (g, t) => {
+    return graph.checkout(g, t)
 }
 
 const command = {
     commit: commitFn,
-    push: pushFn
+    push: pushFn,
+    checkout: checkoutFn
 }
 
 
