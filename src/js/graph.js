@@ -1,19 +1,6 @@
-const graphInit = {
-    tree: [{ commit: 'C0', parent:[], child: []}],
-    branch: {
-        master:'C0',
-        develop:'C0'
-    },
-    currentBr:'develop',
-    currentCm: 'C0',
-    lastCm: 'C0'
-}
+
 
 module.exports = {
-
-    init: () => {
-        return graphInit
-    },
 
     addCommit: (graph) => {
         const splitNumber = graph.lastCm.split(/(\d+)/)

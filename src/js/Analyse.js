@@ -5,4 +5,4 @@ const analyse = (txt) => {
     return txt   
 }
 
-module.exports = analyse;
+module.exports = analyse

@@ -4,6 +4,9 @@ module.exports = {
         branch: {
             master:'C0',
             develop:'C0',
+            feature:[],
+            hotfix:[],
+            release :[],
         },
         currentBr:'develop',
         currentCm: 'C0',
@@ -16,7 +19,10 @@ module.exports = {
         ],
         branch: {
             master:'C0',
-            develop:'C1'
+            develop:'C1',
+            feature:[],
+            hotfix:[],
+            release :[],
         },
         currentBr:'develop',
         currentCm: 'C1',
@@ -30,7 +36,10 @@ module.exports = {
         ],
         branch: {
             master:'C0',
-            develop:'C2'
+            develop:'C2',
+            feature:[],
+            hotfix:[],
+            release :[],
         },
         currentBr:'develop',
         currentCm: 'C2',
@@ -43,7 +52,10 @@ module.exports = {
         ],
         branch: {
             master:'C0',
-            develop:'C0'
+            develop:'C0',
+            feature:[],
+            hotfix:[],
+            release :[],
         },
         currentBr:'develop',
         currentCm: 'C0',
@@ -57,7 +69,10 @@ module.exports = {
         ],
         branch: {
             master:'C0',
-            develop:'C1'
+            develop:'C1',
+            feature:[],
+            hotfix:[],
+            release :[],
         },
         currentBr:'develop',
         currentCm: 'C1',
@@ -70,11 +85,30 @@ module.exports = {
         ],
         branch: {
             master:'C0',
-            develop:'C1'
+            develop:'C1',
+            feature:[],
+            hotfix:[],
+            release :[],
         },
         currentBr:'master',
         currentCm: 'C0',
         lastCm: 'C1'  
+    },
+
+    graphFeature: {
+        tree: [ {commit: 'C0', parent:[], child: ['C1'] },
+                {commit: 'C1', parent:['C0'], child: [] }
+        ],
+        branch: {
+            master:'C0',
+            develop:'C0',
+            feature:[{name:'yolo', commit:'C0'}],
+            hotfix:[],
+            release :[],
+        },
+        currentBr:'master',
+        currentCm: 'C0',
+        lastCm: 'C0'  
     },
 }
 
