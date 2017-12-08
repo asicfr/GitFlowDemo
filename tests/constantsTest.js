@@ -1,4 +1,5 @@
 module.exports = {
+    
     graphInit : {
         tree: [{ commit: 'C0', parent:[], child: []}],
         branch: {
@@ -95,20 +96,68 @@ module.exports = {
         lastCm: 'C1'  
     },
 
-    graphFeature: {
+    graphFeatureStart: {
+        tree: [ {commit: 'C0', parent:[], child: ['C1'] },
+                {commit: 'C1', parent:['C0'], child: [] }
+        ],
+        branch: {
+            master:'C0',
+            develop:'C1',
+            feature:[],
+            hotfix:[],
+            release :[]
+        },
+        currentBr:'develop',
+        currentCm: 'C1',
+        lastCm: 'C1'  
+    },
+
+    graphFeatureStart2: {
+        tree: [ {commit: 'C0', parent:[], child: ['C1'] },
+                {commit: 'C1', parent:['C0'], child: [] }
+        ],
+        branch: {
+            master:'C0',
+            develop:'C1',
+            feature:[{name:'yolow', commit:'C1'}],
+            hotfix:[],
+            release :[]
+        },
+        currentBr:'feature/yolow',
+        currentCm: 'C1',
+        lastCm: 'C1'  
+    },
+
+    graphFeatureFinsish: {
         tree: [ {commit: 'C0', parent:[], child: ['C1'] },
                 {commit: 'C1', parent:['C0'], child: [] }
         ],
         branch: {
             master:'C0',
             develop:'C0',
-            feature:[{name:'yolo', commit:'C0'}],
+            feature:[{name:'yolow', commit:'C1'}],
             hotfix:[],
-            release :[],
+            release :[]
         },
-        currentBr:'master',
-        currentCm: 'C0',
-        lastCm: 'C0'  
+        currentBr:'feature/yolow',
+        currentCm: 'C1',
+        lastCm: 'C1'  
     },
+
+    graphFeatureFinish2: {
+        tree: [ {commit: 'C0', parent:[], child: ['C1'] },
+                {commit: 'C1', parent:['C0'], child: [] }
+        ],
+        branch: {
+            master:'C0',
+            develop:'C1',
+            feature:[],
+            hotfix:[],
+            release :[]
+        },
+        currentBr:'develop',
+        currentCm: 'C1',
+        lastCm: 'C1'  
+    }
 }
 

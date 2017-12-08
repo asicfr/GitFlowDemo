@@ -21,7 +21,6 @@ class App extends Component {
       txt: dataflow.command,
       graph: dataflow.graph
     })
-    
   }
 
   render() {

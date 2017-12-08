@@ -1,0 +1,26 @@
+{
+    "env": {
+        "browser": true,
+        "node": true,
+        "es6": true
+    },
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "plugins": [
+        "react"
+      ],
+    "rules": {
+        "vars-on-top": 2,
+        "comma-dangle": [ 2, "never" ],
+        "quotes": ["error", "single"],
+        "semi": [
+            "error",
+            "never"
+        ]
+    }
+}

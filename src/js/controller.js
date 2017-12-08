@@ -1,5 +1,5 @@
-const analyse = require('./analyse.js')
-const gc = require('./gitCommand.js')
+
+const git = require('./command/git.js')
 const utils = require('./utils.js')
 
 const graphInit = {
@@ -9,7 +9,7 @@ const graphInit = {
         develop:'C0',
         feature:[],
         hotfix:[],
-        release :[],
+        release :[]
     },
     currentBr:'develop',
     currentCm: 'C0',
@@ -17,16 +17,14 @@ const graphInit = {
 }
 
 module.exports = {
-    dataControl : (t, g) => {
-        const txtCommand = analyse(t)
+    dataControl : (command, graph) => {
+        const txtCommand = getText(command)
         try {
-            if(typeof gc.command[txtCommand[0]] !== "function") {
-               throw new Error("Invalid Command")
-            }
-            return {graph: gc.command[txtCommand[0]](g, txtCommand), command: t}
+            utils.checkFunction(git.command, txtCommand.words[1])
+            return {graph: git.command[txtCommand.words[1]](graph, txtCommand), command}
         } 
         catch (error) {
-            return {graph: g, command: error.message}
+            return {graph, command: error.message}
         }
     },
     
@@ -34,6 +32,30 @@ module.exports = {
         return graphInit
     }
 }
+
+const getText = (txt) => {
+    const txtOnlyOneSpace = txt.replace(/\s\s+/g, ' ')
+    const txtSplit = txtOnlyOneSpace.split(' -')
+    
+    
+    const command = {
+        words: txtSplit[0].split(' '),
+        args: {
+             
+        }
+    }
+    return command
+}
+
+    /*
+const analyse = (txt) => {
+    txt = txt.substring(4)
+    txt = txt.split(' ')
+    return txt   
+}
+
+module.exports = analyse;
+*/
 
 
 

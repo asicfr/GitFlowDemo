@@ -1,27 +1,16 @@
-
-
 module.exports = {
-
     addCommit: (graph) => {
         const splitNumber = graph.lastCm.split(/(\d+)/)
-        const newCommit = {commit: "C" + (parseInt(splitNumber[1]) + 1), parent:[graph.currentCm], child: [] }
+        const newCommit = {commit: 'C' + (parseInt(splitNumber[1]) + 1), parent:[graph.currentCm], child: [] }
         return Object.assign({}, graph, {
 			tree : updateTreeGraph(graph.tree, newCommit, graph.currentCm),
 			currentCm : newCommit.commit,
             lastCm : newCommit.commit,
             branch : updateBranch(graph.branch, graph.currentBr, newCommit.commit)
 		})
-    },
-
-    checkout: (g, t) => {
-        return Object.assign({}, g, {
-            currentBr: t[1],
-            currentCm: checkCommitBranch(g, t[1])
-        })
     }
 }
 
-//fn Commit
 const updateTreeGraph = (tree, n, c) => {
     tree = addCommitToTree(tree, n), addChildToParent(c, n.commit, tree)
     return tree
@@ -39,20 +28,9 @@ const addCommitToTree = (arr, newEntry) => {
 
 const updateBranch = (branch, cb, nc) => {
     function checkBranch(branch) {
-        return branch === cb;
+        return branch === cb
     }
     const arrayBranch = Object.keys(branch)
     branch[arrayBranch.find(checkBranch)] = nc
     return branch
 }
-
-//fn Push
-
-//fn checkout
-
-const checkCommitBranch = (g, t) => {
-    return g.branch[t]   
-}
-
-
-
