@@ -1,13 +1,12 @@
-module.exports = {
-    checkout: (graph, txt) => { 
-        return Object.assign({}, graph, {
-            currentBr: txt[2],
-            currentCm: checkCommitBranch(graph, txt[2])
-        })
-    }
+module.exports = (command, graph) => { 
+    const {words} = command
+    const commit = words[2]
+    return Object.assign({}, graph, {
+        currentBr: commit,
+        selectedCommit: checkCommitBranch(graph,commit)
+    })
 }
-//fn Push
-//fn checkout
-const checkCommitBranch = (graph, txt) => {
-    return graph.branch[txt]   
+
+const checkCommitBranch = (graph, commit) => {
+    return graph.branch[commit]   
 }

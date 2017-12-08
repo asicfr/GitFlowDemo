@@ -7,10 +7,10 @@ module.exports = {
             develop:'C0',
             feature:[],
             hotfix:[],
-            release :[],
+            release :[]
         },
         currentBr:'develop',
-        currentCm: 'C0',
+        selectedCommit: 'C0',
         lastCm: 'C0'
     },
     
@@ -23,10 +23,10 @@ module.exports = {
             develop:'C1',
             feature:[],
             hotfix:[],
-            release :[],
+            release :[]
         },
         currentBr:'develop',
-        currentCm: 'C1',
+        selectedCommit: 'C1',
         lastCm: 'C1'  
     },
 
@@ -40,10 +40,10 @@ module.exports = {
             develop:'C2',
             feature:[],
             hotfix:[],
-            release :[],
+            release :[]
         },
         currentBr:'develop',
-        currentCm: 'C2',
+        selectedCommit: 'C2',
         lastCm: 'C2'
     },
 
@@ -56,10 +56,10 @@ module.exports = {
             develop:'C0',
             feature:[],
             hotfix:[],
-            release :[],
+            release :[]
         },
         currentBr:'develop',
-        currentCm: 'C0',
+        selectedCommit: 'C0',
         lastCm: 'C1'  
     },
 
@@ -73,10 +73,10 @@ module.exports = {
             develop:'C1',
             feature:[],
             hotfix:[],
-            release :[],
+            release :[]
         },
         currentBr:'develop',
-        currentCm: 'C1',
+        selectedCommit: 'C1',
         lastCm: 'C1'  
     },
 
@@ -89,10 +89,10 @@ module.exports = {
             develop:'C1',
             feature:[],
             hotfix:[],
-            release :[],
+            release :[]
         },
         currentBr:'master',
-        currentCm: 'C0',
+        selectedCommit: 'C0',
         lastCm: 'C1'  
     },
 
@@ -108,7 +108,7 @@ module.exports = {
             release :[]
         },
         currentBr:'develop',
-        currentCm: 'C1',
+        selectedCommit: 'C1',
         lastCm: 'C1'  
     },
 
@@ -124,7 +124,7 @@ module.exports = {
             release :[]
         },
         currentBr:'feature/yolow',
-        currentCm: 'C1',
+        selectedCommit: 'C1',
         lastCm: 'C1'  
     },
 
@@ -140,7 +140,7 @@ module.exports = {
             release :[]
         },
         currentBr:'feature/yolow',
-        currentCm: 'C1',
+        selectedCommit: 'C1',
         lastCm: 'C1'  
     },
 
@@ -156,7 +156,7 @@ module.exports = {
             release :[]
         },
         currentBr:'develop',
-        currentCm: 'C1',
+        selectedCommit: 'C1',
         lastCm: 'C1'  
     }
 }

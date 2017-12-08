@@ -1,6 +1,7 @@
 
 const git = require('./command/git.js')
 const utils = require('./utils.js')
+const analyzeCommand = require('./command.js')
 
 const graphInit = {
     tree: [{ commit: 'C0', parent:[], child: []}],
@@ -12,28 +13,27 @@ const graphInit = {
         release :[]
     },
     currentBr:'develop',
-    currentCm: 'C0',
+    selectedCommit: 'C0',
     lastCm: 'C0'
 }
 
 module.exports = {
-    dataControl : (command, graph) => {
-        const txtCommand = getText(command)
+    dataControl : (text, graph) => {
+        const command = getCommand(text)
         try {
-            utils.checkFunction(git.command, txtCommand.words[1])
-            return {graph: git.command[txtCommand.words[1]](graph, txtCommand), command}
-        } 
-        catch (error) {
-            return {graph, command: error.message}
+            return {graph :  analyzeCommand(command, graph), console: text}
         }
-    },
+        catch (error) {
+            return {graph, console: error.message}
+        }
+      },
     
     init : () => {
         return graphInit
     }
 }
 
-const getText = (txt) => {
+const getCommand = (txt) => {
     const txtOnlyOneSpace = txt.replace(/\s\s+/g, ' ')
     const txtSplit = txtOnlyOneSpace.split(' -')
     
