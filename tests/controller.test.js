@@ -26,7 +26,7 @@ test('git invalid console', () => {
 })
 
 test('git invalid console 2', () => {
-    expect(controller.dataControl('git yolo', constant.graphInit)).toEqual({graph: constant.graphInit, console: 'Invalid command'})
+    expect(controller.dataControl('git yolo', constant.graphInit)).toEqual({graph: constant.graphInit, console: 'Invalid git command'})
 })
 
 
