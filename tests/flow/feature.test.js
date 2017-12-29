@@ -1,5 +1,5 @@
-const controller = require('../src/js/controller.js')
-const constant = require('./constantfeature.js')
+const controller = require('../../src/js/controller.js')
+const constant = require('../constants/constantfeature.js')
 
 // TEST GIT FLOW
 

@@ -36,7 +36,12 @@ const updateBranch = (branch, nameFeature ) => {
     })
 }
 
+const publishFeatureFn = (words, graph) => {
+    return graph
+}
+
 const featureCommand = {
     start: startFeatureFn,
-    finish: finishFeatureFn
+    finish: finishFeatureFn,
+    publish: publishFeatureFn
 }

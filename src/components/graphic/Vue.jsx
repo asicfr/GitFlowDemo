@@ -19,11 +19,11 @@ export class Vue extends Component {
 
     fnGraphWhoisBranch (c, m, d){
         if (c === m & c === d) {
-            return "master & develop"
+            return 'master & develop'
         } else if (c === m) {
-            return "master"
+            return 'master'
         } else if (c  === d){
-            return "develop"    
+            return 'develop'    
         } 
 }
 
@@ -42,17 +42,17 @@ export class Vue extends Component {
     }
     
     render() {
-        const s = JSON.stringify(this.state.graph); // '{"name":"binchen"}'
+        const s = JSON.stringify(this.state.graph)
         const graphRender =  this.fnGraph()
-        return (
+       /* return (
             <div className='App-Graph'>
                 <p>{s}</p>
                 <div className='Flow'>
                     {graphRender}
                 </div>
             </div>
-        )
+        )*/
     }
 }
 
-export default Vue;
+export default Vue
