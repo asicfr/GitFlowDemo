@@ -1,5 +1,5 @@
 const controller = require('../src/js/controller.js')
-const constant = require('./constantsTest.js')
+const constant = require('./constants/constantgit.js')
 
 test('git init', () => {
     expect(controller.init()).toEqual(constant.graphInit)
