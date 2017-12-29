@@ -1,44 +1,61 @@
-const graph = require('./graph.js')
-const analyse = require('./analyse.js')
+
+const git = require('./command/git.js')
+const utils = require('./utils.js')
+const analyzeCommand = require('./command.js')
+
+const graphInit = {
+    tree: [{ commit: 'C0', parent:[], child: []}],
+    branch: {
+        master:'C0',
+        develop:'C0',
+        feature:[],
+        hotfix:[],
+        release :[]
+    },
+    currentBr:'develop',
+    selectedCommit: 'C0',
+    lastCm: 'C0'
+}
 
 module.exports = {
-    dataControl : (t, g) => {
-        const txtCommand = analyse(t)
+    dataControl : (text, graph) => {
+        const command = getCommand(text)
         try {
-            if(typeof command[txtCommand[0]] !== "function") {
-               throw new Error("Invalid Command")
-            }
-            return {graph: command[txtCommand[0]](g, txtCommand), command: t}
-        } 
-        catch (error) {
-            return {graph: g, command: error.message    }  
+            return {graph :  analyzeCommand(command, graph), console: text}
         }
-    },
+        catch (error) {
+            return {graph, console: error.message}
+        }
+      },
     
     init : () => {
-        return graph.init()
+        return graphInit
     }
 }
 
-const pushFn = (g) => {
-    return g
+const getCommand = (txt) => {
+    const txtOnlyOneSpace = txt.replace(/\s\s+/g, ' ')
+    const txtSplit = txtOnlyOneSpace.split(' -')
+    
+    
+    const command = {
+        words: txtSplit[0].split(' '),
+        args: {
+             
+        }
+    }
+    return command
 }
 
-const commitFn = (g, t) => {
-    if(t.length > 1)
-        throw new Error('Invalid argument')
-
-    return graph.addCommit(g)
+    /*
+const analyse = (txt) => {
+    txt = txt.substring(4)
+    txt = txt.split(' ')
+    return txt   
 }
 
-const checkoutFn = (g, t) => {
-    return graph.checkout(g, t)
-}
+module.exports = analyse;
+*/
 
-const command = {
-    commit: commitFn,
-    push: pushFn,
-    checkout: checkoutFn
-}
 
 

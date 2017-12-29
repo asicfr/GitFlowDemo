@@ -18,10 +18,9 @@ class App extends Component {
   handleConsole = (textValue) => {
     const dataflow = controller.dataControl(textValue, this.state.graph)
     this.setState({
-      txt: dataflow.command,
+      txt: dataflow.console,
       graph: dataflow.graph
     })
-    
   }
 
   render() {

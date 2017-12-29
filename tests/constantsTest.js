@@ -1,12 +1,16 @@
 module.exports = {
+    
     graphInit : {
         tree: [{ commit: 'C0', parent:[], child: []}],
         branch: {
             master:'C0',
             develop:'C0',
+            feature:[],
+            hotfix:[],
+            release :[]
         },
         currentBr:'develop',
-        currentCm: 'C0',
+        selectedCommit: 'C0',
         lastCm: 'C0'
     },
     
@@ -16,10 +20,13 @@ module.exports = {
         ],
         branch: {
             master:'C0',
-            develop:'C1'
+            develop:'C1',
+            feature:[],
+            hotfix:[],
+            release :[]
         },
         currentBr:'develop',
-        currentCm: 'C1',
+        selectedCommit: 'C1',
         lastCm: 'C1'  
     },
 
@@ -30,10 +37,13 @@ module.exports = {
         ],
         branch: {
             master:'C0',
-            develop:'C2'
+            develop:'C2',
+            feature:[],
+            hotfix:[],
+            release :[]
         },
         currentBr:'develop',
-        currentCm: 'C2',
+        selectedCommit: 'C2',
         lastCm: 'C2'
     },
 
@@ -43,10 +53,13 @@ module.exports = {
         ],
         branch: {
             master:'C0',
-            develop:'C0'
+            develop:'C0',
+            feature:[],
+            hotfix:[],
+            release :[]
         },
         currentBr:'develop',
-        currentCm: 'C0',
+        selectedCommit: 'C0',
         lastCm: 'C1'  
     },
 
@@ -57,10 +70,13 @@ module.exports = {
         ],
         branch: {
             master:'C0',
-            develop:'C1'
+            develop:'C1',
+            feature:[],
+            hotfix:[],
+            release :[]
         },
         currentBr:'develop',
-        currentCm: 'C1',
+        selectedCommit: 'C1',
         lastCm: 'C1'  
     },
 
@@ -70,11 +86,14 @@ module.exports = {
         ],
         branch: {
             master:'C0',
-            develop:'C1'
+            develop:'C1',
+            feature:[],
+            hotfix:[],
+            release :[]
         },
         currentBr:'master',
-        currentCm: 'C0',
+        selectedCommit: 'C0',
         lastCm: 'C1'  
-    },
-}
+    }
 
+}

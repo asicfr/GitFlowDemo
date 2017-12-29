@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 
-
 export class Input extends Component {
 
     constructor(props) {
@@ -16,7 +15,7 @@ export class Input extends Component {
         if (event.key === 'Enter')
         {
             this.setState({text: ''})
-            this.props.onInput(this.state.text);  
+            this.props.onInput(this.state.text)
             event.preventDefault()
         }
     }

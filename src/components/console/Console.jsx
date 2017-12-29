@@ -10,12 +10,12 @@ export class Console extends Component {
         this.state = {arrayText: []}
     }
 
-    componentWillReceiveProps(newProps) {
-        this.state.arrayText.push(newProps.command)
-    }
-
     handleConsole = (textValue) => {
         this.props.onConsole(textValue)
+    }
+    
+    componentWillReceiveProps(newProps) {
+        this.state.arrayText.push(newProps.command)
     }
 
     render() {
