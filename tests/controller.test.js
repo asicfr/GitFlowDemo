@@ -29,13 +29,3 @@ test('git invalid console 2', () => {
     expect(controller.dataControl('git yolo', constant.graphInit)).toEqual({graph: constant.graphInit, console: 'Invalid git command'})
 })
 
-
-// TEST GIT FLOW
-
-test('git flow feature start', () => {
-    expect(controller.dataControl('git flow feature start yolow', constant.graphFeatureStart)).toEqual({graph: constant.graphFeatureStart2, console: 'git flow feature start yolow'})
-})
-
-test('git flow feature stop', () => {
-    expect(controller.dataControl('git flow feature finish yolow', constant.graphFeatureFinsish)).toEqual({graph: constant.graphFeatureFinish2  , console: 'git flow feature finish yolow'})
-})

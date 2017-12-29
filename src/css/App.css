@@ -39,7 +39,7 @@
 }
 
 .imgClose {
-  opacity: 0.8;
+  opacity: 1;
   float: right;
   margin-right: 1vh;
 }
@@ -111,12 +111,12 @@
   float: left;
   font-family: consoleFont;
   margin: 0 auto;
-  margin-left: 2%;
+  margin-left: 1vh;
   -webkit-user-select: none;  /* Chrome all / Safari all */
   -moz-user-select: none;     /* Firefox all */
   -ms-user-select: none;      /* IE 10+ */
   user-select: none;  
-  margin-top: 1%;
+  margin-top: 0.5vh;
 }
 
 .App-Footer input {
@@ -125,12 +125,12 @@
   width: 90%;
   border: none;
   float: left;
-  height: 90%;
+  height: 80%;
   color: white;
   font-size: 1.9vh;
   background: #000;
   margin: 0 auto;
-  margin-left: 2%;
+  margin-left: 1vh;
   overflow: hidden;
 }
 
@@ -163,7 +163,7 @@
  
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1024px) {
   .App-Console {
     width: 40%;
     height: 91vh;
@@ -178,11 +178,13 @@
   .App-Graph {
     width: 55%;
   }
- 
+  .App-Footer input{
+    height: 80%
+  }
 }
 
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 768px) {
   .App-Console {
     width: 95%;
     height: 91vh;
@@ -199,6 +201,9 @@
   }
   .imgClose {
     margin-left: 10%
+  }
+  .App-Footer input{
+    height: 60%
   }
 }
 

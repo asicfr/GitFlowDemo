@@ -28,10 +28,8 @@ const finishFeatureFn = (words, graph) => {
 
 const updateBranch = (branch, nameFeature ) => {
     const index = branch.feature.indexOf(branch.feature.find(f => f.name === nameFeature))
-    const commitDevelop = branch.feature[0].commit
-    console.log(index)
+    const commitDevelop = branch.feature[index].commit
     const newArrayFeature = utils.immutableDelete(branch.feature, index)
-    console.log(newArrayFeature)
     return Object.assign({}, branch, {
         feature: newArrayFeature,
         develop: commitDevelop

@@ -26,11 +26,24 @@ const addChildToParent = (parent, child, tree) => {
     return tree
 }   
 
-const updateBranch = (branch, cb, nc) => {
-    function checkBranch(branch) {
-        return branch === cb
+const updateBranch = (branch, currentbranch, newcommit) => {
+    if (currentbranch.indexOf('/') > -1)
+    {
+       return updateWhenFlow(branch, currentbranch, newcommit)
     }
-    const arrayBranch = Object.keys(branch)
-    branch[arrayBranch.find(checkBranch)] = nc
+    else {
+        function checkBranch(branch) {
+            return branch === currentbranch
+        }
+        const arrayBranch = Object.keys(branch)
+        branch[arrayBranch.find(checkBranch)] = newcommit
+        return branch
+    }
+}
+
+const updateWhenFlow = (branch, currentbranch, newcommit) => {
+    const ArraySplitFlow = currentbranch.split('/')
+    const index = branch[ArraySplitFlow[0]].indexOf(branch[ArraySplitFlow[0]].find(f => f.name === ArraySplitFlow[1]))
+    branch[ArraySplitFlow[0]][index].commit = newcommit
     return branch
 }
