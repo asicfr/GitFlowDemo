@@ -28,17 +28,30 @@ export class Vue extends Component {
 }
 
     fnGraph() {
-        const master = this.state.graph.branch.master
-        const develop = this.state.graph.branch.develop
-        
-        return this.state.graph.tree.map((c, i) => {
-            return (
-                <div className="divCommit" key={i}>
-                    <p className="branch">{this.fnGraphWhoisBranch(c.commit, master, develop)}</p>
-                    <li className="Commit" >{c.commit}</li>
+        return (
+            <div>
+                <div className='branch feature'>
+                    <div className='trait'/>
+                    <h1>Feature</h1> 
                 </div>
-            )
-        })
+                <div className='branch develop'>
+                    <div className='trait'/>
+                    <h1>Develop</h1> 
+                </div>
+                <div className='branch release'>
+                    <div className='trait'/>
+                    <h1>Release</h1> 
+                </div>
+                <div className='branch master'> 
+                    <div className='trait'/>
+                    <h1>Master</h1> 
+                </div>
+                <div className='branch hotfix'> 
+                    <div className='trait'/>
+                    <h1>Hotfix</h1> 
+                </div>
+            </div>
+        )
     }
     
     render() {
@@ -52,6 +65,11 @@ export class Vue extends Component {
                 </div>
             </div>
         )*/
+        return (
+            <div className='App-Graph'>
+               {graphRender}
+            </div>
+        )
     }
 }
 

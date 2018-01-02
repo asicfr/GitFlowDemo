@@ -7,12 +7,14 @@
   text-align: center;
   height: 100%;
   clear: none;
+  overflow: hidden;
 }
 
 .App-Console {
+  background: black;
   background-size: cover;
   width: 30%;
-  height: 93vh;
+  height: 95vh;
   float: left;
   margin: 2vh;
   box-shadow: -0.5vh 0.5vh 4vh 0.4vh grey;
@@ -139,10 +141,13 @@
 }
 
 .App-Graph {
+  display: table;
   width: 65%;
   padding-top: 3vh;
   float: left;
   font-size: 1.9vh;
+
+  
 }
 
 @media screen and (max-width: 1200px) {
@@ -154,7 +159,7 @@
     height: 3.9%;
   }
   .App-Body {
-    height: 96.1%;
+    height: 94%;
     float: left;    
   }
   .App-Graph {
@@ -166,14 +171,14 @@
 @media screen and (max-width: 1024px) {
   .App-Console {
     width: 40%;
-    height: 91vh;
+
   }
   .App-Header {
     background: #ffffff;
     height: 4.2%;
   }
   .App-Body {
-    height: 95.8%;
+    height: 92%;
   }
   .App-Graph {
     width: 55%;
@@ -186,24 +191,25 @@
 
 @media screen and (max-width: 768px) {
   .App-Console {
-    width: 95%;
-    height: 91vh;
+    width: 100%;
+    height: 77vh;
+    margin: 0;
   }
   .App-Header {
     background: #ffffff;
     height: 4.2%;
   }
   .App-Body {
-    height: 95.8%;
+    height: 90%;
   }
   .App-Graph {
     width: 100%;
   }
   .imgClose {
-    margin-left: 10%
+    margin-left: 3%
   }
   .App-Footer input{
-    height: 60%
+    height: 100%
   }
 }
 

@@ -1,27 +1,180 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
 .Flow {  
     text-align: center;
     width: 30%;
+    height: 100%;
     margin: 0 auto;
-}
-
-.Commit {
-    line-height: 5vh;
-	width: 5vh;
-	height: 5vh;
-    text-align: center;
-    margin: 0 auto;
-    border-style: solid;
-    border-color: gray;
-	-moz-border-radius: 50px;
-	-webkit-border-radius: 50px;
-    border-radius: 50px;
-    list-style-type: none;
-    margin-bottom: 3vh;
+    overflow:hidden;
 }
 
 .branch {
-    color: red; 
-    font-size: 1.8vh;
-    position: absolute;
-    margin-left: 25vh;
+    float: left;
+    width: 20%;
 }
+
+.branch h1 {
+    width: 50%;
+    padding-top: 3%;
+    height: 3.3vh;
+    text-align: center;
+    margin: 0 auto;
+    color: white;
+    z-index: 10;
+    font-size: 2vh;
+}
+
+.trait {
+    margin-top: -3vh;
+    opacity: 0.5;
+    width: 0;
+    background: transparent;
+    position: absolute;
+    z-index: -1;
+    border-left: 1vh solid;
+    box-shadow: 3px 3px 15px 0px #656565;
+    height:100vh;
+    overflow:auto;
+}
+
+.feature {
+    color: green
+}
+
+.feature h1 {
+    background: rgb(103, 189, 103);
+}
+
+.feature .trait {
+ left : 38.5%;
+}
+
+.hotfix {
+    color: red
+}
+
+.hotfix h1 {
+    background: rgb(252, 110, 110);
+}
+
+.hotfix .trait {
+    left : 90.5%;
+}
+
+.develop {
+    color: blue
+}
+
+.develop h1 {
+    background: rgb(121, 121, 236);
+}
+
+.develop .trait {
+    left : 51.5%;
+}
+
+.release {
+    color: orange
+}
+
+.release h1 {
+    background: rgb(253, 203, 108);
+}
+
+.release .trait {
+    left : 64.5%;
+}
+
+.master {
+    color: rgb(39, 201, 201)
+}
+
+.master h1 {
+    background: rgb(124, 228, 228);
+}
+
+.master .trait {
+    left : 77.5%;
+}
+
+
+
+.commit {
+
+}
+
+@media screen and (max-width: 1200px) {
+
+    .feature .trait {
+        left : 47.6%;
+    }
+
+    .develop .trait {
+        left : 58.6%;
+    }
+    
+    .release .trait {
+        left : 69.6%;
+    }
+
+    .master .trait {
+        left : 80.6%;
+    }
+
+    .hotfix .trait {
+        left : 91.6%;
+    }
+   
+  }
+  
+  @media screen and (max-width: 1024px) {
+    .feature .trait {
+        left : 47.6%;
+    }
+
+    .develop .trait {
+        left : 58.6%;
+    }
+    
+    .release .trait {
+        left : 69.6%;
+    }
+
+    .master .trait {
+        left : 80.6%;
+    }
+
+    .hotfix .trait {
+        left : 91.6%;
+    }
+  }
+  
+  
+  @media screen and (max-width: 768px) {
+
+    .branch h1 {
+        width: 80%;
+        margin-top: 20%;
+    }
+
+    .feature .trait {
+        left : 9.8%;
+    }
+
+    .develop .trait {
+        left : 29.9%;
+    }
+    
+    .release .trait {
+        left : 50%;
+    }
+
+    .master .trait {
+        left : 69.9%;
+    }
+
+    .hotfix .trait {
+        left : 90.2%;
+    }
+  }
+  
