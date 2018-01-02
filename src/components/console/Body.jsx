@@ -12,7 +12,6 @@ export class Body extends Component {
     }
 
     render() {
-
         const tab = this.consoleText()
         return (
             <div className="App-Body">
