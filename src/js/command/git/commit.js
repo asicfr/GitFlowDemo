@@ -4,9 +4,9 @@ module.exports = (command, graph) => {
     const {words} = command
     if (words.length > 2)
         throw new Error('Too many words')
-
+    const currentBrSplit = graph.currentBr.split('/')
     const splitNumber = graph.lastCm.split(/(\d+)/)
-    const newCommit = {commit: 'C' + (parseInt(splitNumber[1]) + 1), parent:[graph.selectedCommit], child: []}
+    const newCommit = {commit: 'C' + (parseInt(splitNumber[1]) + 1), parent:[graph.selectedCommit], child: [], branch: [currentBrSplit[0]]}
     return Object.assign({}, graph, {
         tree : updateTreeGraph(graph.tree, newCommit, graph.selectedCommit),
         selectedCommit : newCommit.commit,
@@ -27,11 +27,9 @@ const addChildToParent = (parent, child, tree) => {
 }   
 
 const updateBranch = (branch, currentbranch, newcommit) => {
-    if (currentbranch.indexOf('/') > -1)
-    {
+    if (currentbranch.indexOf('/') > -1) {
        return updateWhenFlow(branch, currentbranch, newcommit)
-    }
-    else {
+    } else {
         function checkBranch(branch) {
             return branch === currentbranch
         }

@@ -4,13 +4,13 @@ const utils = require('./utils.js')
 const analyzeCommand = require('./command.js')
 
 const graphInit = {
-    tree: [{ commit: 'C0', parent:[], child: []}],
+    tree: [{ commit: 'C0', parent:[], child: [], branch: ['develop', 'master']}],
     branch: {
-        master:'C0',
-        develop:'C0',
         feature:[],
-        hotfix:[],
-        release :[]
+        develop:'C0',
+        release :[],
+        master:'C0',
+        hotfix:[]
     },
     currentBr:'develop',
     selectedCommit: 'C0',

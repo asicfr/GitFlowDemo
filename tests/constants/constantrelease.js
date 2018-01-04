@@ -1,8 +1,8 @@
 module.exports = {
 
     graphReleaseStart: {
-        tree: [ {commit: 'C0', parent:[], child: ['C1'] },
-                {commit: 'C1', parent:['C0'], child: [] }
+        tree: [  {commit: 'C0', parent:[], child: ['C1'], branch: ['develop', 'master'] },
+        {commit: 'C1', parent:['C0'], child: [], branch: ['develop'] }
         ],
         branch: {
             master:'C0',
@@ -17,8 +17,8 @@ module.exports = {
     },
     
     graphReleaseStart2: {
-        tree: [ {commit: 'C0', parent:[], child: ['C1'] },
-                {commit: 'C1', parent:['C0'], child: [] }
+        tree: [  {commit: 'C0', parent:[], child: ['C1'], branch: ['develop', 'master'] },
+        {commit: 'C1', parent:['C0'], child: [], branch: ['develop'] }
         ],
         branch: {
             master:'C0',
@@ -33,8 +33,8 @@ module.exports = {
     },
     
         graphReleaseFinsish: {
-            tree: [ {commit: 'C0', parent:[], child: ['C1'] },
-                    {commit: 'C1', parent:['C0'], child: [] }
+            tree: [  {commit: 'C0', parent:[], child: ['C1'], branch: ['develop', 'master'] },
+            {commit: 'C1', parent:['C0'], child: [], branch: ['develop'] }
             ],
             branch: {
                 master:'C0',
@@ -49,8 +49,8 @@ module.exports = {
         },
     
         graphReleaseFinish2: {
-            tree: [ {commit: 'C0', parent:[], child: ['C1'] },
-                    {commit: 'C1', parent:['C0'], child: [] }
+            tree: [  {commit: 'C0', parent:[], child: ['C1'], branch: ['develop', 'master'] },
+            {commit: 'C1', parent:['C0'], child: [], branch: ['develop'] }
             ],
             branch: {
                 master:'C1',

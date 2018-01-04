@@ -17,54 +17,46 @@ export class Vue extends Component {
         
     }
 
-    fnGraphWhoisBranch (c, m, d){
-        if (c === m & c === d) {
-            return 'master & develop'
-        } else if (c === m) {
-            return 'master'
-        } else if (c  === d){
-            return 'develop'    
-        } 
-}
+    branchCommit (graph, nameBranch) {
+        let margin = 8
+        return graph.tree.map((c, i) => {
+            if(c.branch.includes(nameBranch)) {
+                const divStyle = {
+                    marginTop: margin + '%'
+                }
+                margin += 4
+                return (
+                    <div style={divStyle} className='commit' key={i}>
+                        <div className='commitText'>{c.commit}</div>
+                    </div>
+                )
+            }
+            return
+        })
+    }
 
     fnGraph() {
-        return (
-            <div>
-                <div className='branch feature'>
-                    <div className='trait'/>
-                    <h1>Feature</h1> 
+        const arrayBranch = Object.entries(this.state.graph.branch)
+        return arrayBranch.map((branch, i) => {
+            const nameBranch = branch[0]
+            const nameClass = 'branch ' + nameBranch 
+            const divStyle = {
+                marginTop: 0 + '%'
+            }
+            return (
+                <div className={nameClass} key={i}>
+                    <div className='trait'></div>   
+                    <h1>{nameBranch}</h1> 
+                    <div style={divStyle}></div>
+                    {this.branchCommit(this.state.graph, nameBranch)}
                 </div>
-                <div className='branch develop'>
-                    <div className='trait'/>
-                    <h1>Develop</h1> 
-                </div>
-                <div className='branch release'>
-                    <div className='trait'/>
-                    <h1>Release</h1> 
-                </div>
-                <div className='branch master'> 
-                    <div className='trait'/>
-                    <h1>Master</h1> 
-                </div>
-                <div className='branch hotfix'> 
-                    <div className='trait'/>
-                    <h1>Hotfix</h1> 
-                </div>
-            </div>
-        )
+            )
+        })
     }
     
     render() {
-        const s = JSON.stringify(this.state.graph)
+        console.log(this.state.graph)
         const graphRender =  this.fnGraph()
-       /* return (
-            <div className='App-Graph'>
-                <p>{s}</p>
-                <div className='Flow'>
-                    {graphRender}
-                </div>
-            </div>
-        )*/
         return (
             <div className='App-Graph'>
                {graphRender}

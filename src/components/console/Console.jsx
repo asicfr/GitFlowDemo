@@ -7,15 +7,19 @@ export class Console extends Component {
 
     constructor(props) {
         super(props)
-        this.state = {arrayText: []}
+        this.state = {
+            arrayText: [],
+            historyCommand: []
+        }
+    }
+     
+    componentWillReceiveProps(newProps) {
+        this.state.arrayText.push(newProps.command)
     }
 
     handleConsole = (textValue) => {
+        this.state.historyCommand.push(textValue)
         this.props.onConsole(textValue)
-    }
-    
-    componentWillReceiveProps(newProps) {
-        this.state.arrayText.push(newProps.command)
     }
 
     render() {
@@ -23,7 +27,7 @@ export class Console extends Component {
             <div className="App-Console">
                 <Headers/>
                 <Body data={this.state.arrayText}/>
-                <Input onInput={this.handleConsole}/>
+                <Input data={this.state.historyCommand} onInput={this.handleConsole}/>
             </div>
         )
     }

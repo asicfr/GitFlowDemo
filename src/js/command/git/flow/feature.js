@@ -20,6 +20,10 @@ const addFeature = (branch, newFeature) => {
 }
 
 const finishFeatureFn = (words, graph) => {
+    if(graph.branch.feature.indexOf(graph.branch.feature.find(f => f.name === words[4])) === -1) {
+        throw new Error('Any feature with this name')
+    } 
+
     return Object.assign({}, graph, {
         branch: updateBranch(graph.branch, words[4]),
         currentBr: 'develop'

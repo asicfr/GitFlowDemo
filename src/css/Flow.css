@@ -11,6 +11,7 @@
 .branch {
     float: left;
     width: 20%;
+    color: white;
 }
 
 .branch h1 {
@@ -19,29 +20,25 @@
     height: 3.3vh;
     text-align: center;
     margin: 0 auto;
-    color: white;
     z-index: 10;
     font-size: 2vh;
+    margin-bottom: 10px;
 }
 
 .trait {
+    text-align: center;
     margin-top: -3vh;
-    opacity: 0.5;
-    width: 0;
-    background: transparent;
+    width: 1vh;
     position: absolute;
-    z-index: -1;
-    border-left: 1vh solid;
-    box-shadow: 3px 3px 15px 0px #656565;
-    height:100vh;
-    overflow:auto;
+    top: 0;
+    left: 0;
+    z-index: -10;
+    box-shadow: 2px 2px 15px 0px #656565;
+    height:103vh;
 }
 
-.feature {
-    color: green
-}
-
-.feature h1 {
+.feature * {
+    border-color: rgb(103, 189, 103);
     background: rgb(103, 189, 103);
 }
 
@@ -49,11 +46,8 @@
  left : 38.5%;
 }
 
-.hotfix {
-    color: red
-}
-
-.hotfix h1 {
+.hotfix * {
+    border-color: rgb(252, 110, 110);
     background: rgb(252, 110, 110);
 }
 
@@ -61,11 +55,8 @@
     left : 90.5%;
 }
 
-.develop {
-    color: blue
-}
-
-.develop h1 {
+.develop * {
+    border-color: rgb(121, 121, 236);
     background: rgb(121, 121, 236);
 }
 
@@ -73,11 +64,8 @@
     left : 51.5%;
 }
 
-.release {
-    color: orange
-}
-
-.release h1 {
+.release * {
+    border-color:rgb(253, 203, 108);
     background: rgb(253, 203, 108);
 }
 
@@ -85,11 +73,8 @@
     left : 64.5%;
 }
 
-.master {
-    color: rgb(39, 201, 201)
-}
-
-.master h1 {
+.master * {
+    border-color:rgb(124, 228, 228);
     background: rgb(124, 228, 228);
 }
 
@@ -97,11 +82,24 @@
     left : 77.5%;
 }
 
-
-
 .commit {
-
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    border: 1px solid white;
+    border-radius: 50%; /* one half of ( (border * 2) + height + padding ) */
+    height: 5vh; 
+    width: 5vh;
+    
 }
+
+.commitText {
+    background: none;
+    display: table-cell;
+    padding: 1.2vh;
+    padding-top: 1.5vh;
+    vertical-align: middle;
+  }
 
 @media screen and (max-width: 1200px) {
 
@@ -123,8 +121,7 @@
 
     .hotfix .trait {
         left : 91.6%;
-    }
-   
+    }   
   }
   
   @media screen and (max-width: 1024px) {
@@ -147,6 +144,8 @@
     .hotfix .trait {
         left : 91.6%;
     }
+
+   
   }
   
   
@@ -154,7 +153,11 @@
 
     .branch h1 {
         width: 80%;
-        margin-top: 20%;
+        margin-top: 5%;
+    }
+
+    .trait {
+        margin-top: 70vh;
     }
 
     .feature .trait {
@@ -176,5 +179,7 @@
     .hotfix .trait {
         left : 90.2%;
     }
+
+   
   }
   

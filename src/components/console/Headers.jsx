@@ -8,7 +8,7 @@ export class Headers extends Component {
         return (
             <div className="App-Header">
                 <img className="imgHeaders imgGit" alt='logo gitbash' src={gitbash}/>
-                <p>git: root@gitFlowDemo</p>
+                <p>Created By Sogeti innovation@gitFlowDemo</p>
                 <img className="imgHeaders imgClose" alt='logo close' src={close}/>
                 <img className="imgHeaders imgClose" alt='logo reduce' src={reduce}/>
             </div>
@@ -16,4 +16,4 @@ export class Headers extends Component {
     }
 }
 
-export default Headers;
+export default Headers

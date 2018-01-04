@@ -10,6 +10,5 @@ module.exports = (command, graph) => {
     if (!fn) {
         throw new Error('Invalid git command')
     }
-
     return fn(command, graph)
 }   

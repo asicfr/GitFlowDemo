@@ -1,8 +1,8 @@
 module.exports = {
 
 graphFeatureStart: {
-    tree: [ {commit: 'C0', parent:[], child: ['C1'] },
-            {commit: 'C1', parent:['C0'], child: [] }
+    tree: [  {commit: 'C0', parent:[], child: ['C1'], branch: ['develop', 'master'] },
+    {commit: 'C1', parent:['C0'], child: [], branch: ['develop'] }
     ],
     branch: {
         master:'C0',
@@ -17,8 +17,8 @@ graphFeatureStart: {
 },
 
 graphFeatureStart2: {
-    tree: [ {commit: 'C0', parent:[], child: ['C1'] },
-            {commit: 'C1', parent:['C0'], child: [] }
+    tree: [  {commit: 'C0', parent:[], child: ['C1'], branch: ['develop', 'master'] },
+    {commit: 'C1', parent:['C0'], child: [], branch: ['develop'] }
     ],
     branch: {
         master:'C0',
@@ -33,8 +33,8 @@ graphFeatureStart2: {
 },
 
     graphFeatureFinsish: {
-        tree: [ {commit: 'C0', parent:[], child: ['C1'] },
-                {commit: 'C1', parent:['C0'], child: [] }
+        tree: [  {commit: 'C0', parent:[], child: ['C1'], branch: ['develop', 'master'] },
+        {commit: 'C1', parent:['C0'], child: [], branch: ['develop'] }
         ],
         branch: {
             master:'C0',
@@ -49,8 +49,8 @@ graphFeatureStart2: {
     },
 
     graphFeatureFinish2: {
-        tree: [ {commit: 'C0', parent:[], child: ['C1'] },
-                {commit: 'C1', parent:['C0'], child: [] }
+        tree: [  {commit: 'C0', parent:[], child: ['C1'], branch: ['develop', 'master'] },
+        {commit: 'C1', parent:['C0'], child: [], branch: ['develop'] }
         ],
         branch: {
             master:'C0',
@@ -65,8 +65,8 @@ graphFeatureStart2: {
     },
 
     graphFeatureCommmit1: {
-        tree: [ {commit: 'C0', parent:[], child: ['C1'] },
-                {commit: 'C1', parent:['C0'], child: [] }
+        tree: [  {commit: 'C0', parent:[], child: ['C1'], branch: ['develop', 'master'] },
+        {commit: 'C1', parent:['C0'], child: [], branch: ['develop'] }
         ],
         branch: {
             master:'C0',
@@ -81,9 +81,9 @@ graphFeatureStart2: {
     },
 
     graphFeatureCommmit2: {
-        tree: [ {commit: 'C0', parent:[], child: ['C1'] },
-                {commit: 'C1', parent:['C0'], child: ['C2'] },
-                {commit: 'C2', parent:['C1'], child: [] }
+        tree: [ {commit: 'C0', parent:[], child: ['C1'], branch: ['develop', 'master'] },
+                {commit: 'C1', parent:['C0'], child: ['C2'], branch: ['develop'] },
+                {commit: 'C2', parent:['C1'], child: [], branch: ['feature'] }
         ],
         branch: {
             master:'C0',

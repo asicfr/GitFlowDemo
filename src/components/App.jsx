@@ -12,7 +12,7 @@ class App extends Component {
           txt: '',
           graph: controller.init(),
         }      
-        console.log(this.state.graph)
+   
   }
 
   handleConsole = (textValue) => {

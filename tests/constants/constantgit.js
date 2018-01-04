@@ -1,7 +1,7 @@
 module.exports = {
     
     graphInit : {
-        tree: [{ commit: 'C0', parent:[], child: []}],
+        tree: [{ commit: 'C0', parent:[], child: [], branch: ['develop', 'master']}],
         branch: {
             master:'C0',
             develop:'C0',
@@ -15,8 +15,8 @@ module.exports = {
     },
     
     graphFinale : {
-        tree: [ {commit: 'C0', parent:[], child: ['C1'] },
-                {commit: 'C1', parent:['C0'], child: [] }
+        tree: [ {commit: 'C0', parent:[], child: ['C1'], branch: ['develop', 'master'] },
+                {commit: 'C1', parent:['C0'], child: [], branch: ['develop'] }
         ],
         branch: {
             master:'C0',
@@ -31,9 +31,9 @@ module.exports = {
     },
 
     graphFinaleDeux : {
-        tree: [ {commit: 'C0', parent:[], child: ['C1'] },
-                {commit: 'C1', parent:['C0'], child: ['C1'] },
-                {commit: 'C2', parent:['C0'], child: [] }
+        tree: [ {commit: 'C0', parent:[], child: ['C1'], branch: ['develop', 'master']  },
+                {commit: 'C1', parent:['C0'], child: ['C1'], branch: ['develop']},
+                {commit: 'C2', parent:['C0'], child: [], branch: ['develop'] }
         ],
         branch: {
             master:'C0',
@@ -65,8 +65,8 @@ module.exports = {
 
     
     graphCheckoutInit: {
-        tree: [ {commit: 'C0', parent:[], child: ['C1'] },
-                {commit: 'C1', parent:['C0'], child: [] }
+        tree: [ {commit: 'C0', parent:[], child: ['C1'], branch: ['develop', 'master'] },
+                {commit: 'C1', parent:['C0'], child: [], branch: ['develop'] }
         ],
         branch: {
             master:'C0',
@@ -81,8 +81,8 @@ module.exports = {
     },
 
     graphCheckoutFinale: {
-        tree: [ {commit: 'C0', parent:[], child: ['C1'] },
-                {commit: 'C1', parent:['C0'], child: [] }
+        tree: [ {commit: 'C0', parent:[], child: ['C1'], branch: ['develop', 'master'] },
+                {commit: 'C1', parent:['C0'], child: [], branch: ['develop'] }
         ],
         branch: {
             master:'C0',

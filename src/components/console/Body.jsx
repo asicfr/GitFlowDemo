@@ -3,6 +3,11 @@ import '../../css/App.css'
 
 export class Body extends Component {
 
+    componentDidUpdate = () => {
+        const el = this.refs.wrap;
+        el.scrollTop = el.scrollHeight
+    }
+        
     consoleText = () => {
         return this.props.data.map((text, i) => {
             return (
@@ -14,7 +19,7 @@ export class Body extends Component {
     render() {
         const tab = this.consoleText()
         return (
-            <div className="App-Body">
+            <div ref="wrap" className="App-Body">
                 {tab}
             </div>
         )

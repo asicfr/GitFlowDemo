@@ -41,22 +41,23 @@
 }
 
 .imgClose {
-  opacity: 1;
+  margin: 0.4vh auto;
   float: right;
   margin-right: 1vh;
 }
 
 .imgGit {
-  margin-left: 10%; 
+  margin: 0.4vh auto;
+  margin-left: 1vh; 
 }
 
 .App-Header p {
   color: black;
   font-family: consoleFont;
-  font-size: 2.4vh;
+  font-size: 1.9vh;
   float: left;
-  margin: 0.5% auto;
-  margin-left: 5%;
+  margin: 0.5vh auto;
+  margin-left: 1vh;
   -webkit-user-select: none;  /* Chrome all / Safari all */
   -moz-user-select: none;     /* Firefox all */
   -ms-user-select: none;      /* IE 10+ */
@@ -64,13 +65,13 @@
 }
 
 .App-Body {
-  font-size: 1.9vh;
+  font-size: 1.5vh;
   font-family: consoleFont;
   color: white;
   width: 100%;
   height: 92.2%;
   background: #000;
-  overflow: auto;
+  overflow: hidden;
 }
 
 .App-Body li {
@@ -85,8 +86,9 @@
   float: left;
   font-family: consoleFont;
   margin: 0 auto;
-  margin-left: 2%;
+  margin-left: 1vh;
   margin-top: 1%;
+  
 }
 
 .dollars {
@@ -105,11 +107,12 @@
   clear: none;
   font-family: consoleFont;
   overflow: hidden;
+  margin-top: 0.4vh;
 }
 
 .App-Footer p {
   opacity: 0.8;
-  font-size: 1.9vh;
+  font-size: 1.5vh;
   float: left;
   font-family: consoleFont;
   margin: 0 auto;
@@ -118,7 +121,7 @@
   -moz-user-select: none;     /* Firefox all */
   -ms-user-select: none;      /* IE 10+ */
   user-select: none;  
-  margin-top: 0.5vh;
+  margin-top: 0.7vh;
 }
 
 .App-Footer input {
@@ -129,7 +132,7 @@
   float: left;
   height: 80%;
   color: white;
-  font-size: 1.9vh;
+  font-size: 1.5vh;
   background: #000;
   margin: 0 auto;
   margin-left: 1vh;
@@ -148,6 +151,17 @@
   font-size: 1.9vh;
 
   
+}
+
+@media screen and (max-width: 1400px) {
+  .App-Console {
+    width: 30%;
+  }
+
+  .App-Header p {
+    margin-top: 1vh;
+    font-size: 1.5vh;
+  }
 }
 
 @media screen and (max-width: 1200px) {
@@ -184,7 +198,7 @@
     width: 55%;
   }
   .App-Footer input{
-    height: 80%
+    height: 85%
   }
 }
 
@@ -197,8 +211,14 @@
   }
   .App-Header {
     background: #ffffff;
-    height: 4.2%;
+    height: 4vh;
   }
+
+  .App-Header p {
+    margin: 1vh auto;
+    margin-left: 1vh;
+  }
+
   .App-Body {
     height: 90%;
   }
@@ -209,7 +229,10 @@
     margin-left: 3%
   }
   .App-Footer input{
-    height: 100%
+    height: 90%
+  }
+  .App-Footer p {
+    margin-top: 1vh;
   }
 }
 
