@@ -1,10 +1,14 @@
-module.exports = (command, graph) => {
-    const {words} = command
-    if(words[0] === 'git') {
-       return require('./command/git')(command, graph)
-    } else if (words == '') {
-        throw new Error('')
-    } else {
-        throw new Error('Invalid command')
-    }
+import git from './command/git'
+
+const command = (comm, graph) => {
+  const { words } = comm
+  if (words[0] === 'git') {
+    return git(comm, graph)
+  } else if (words === '') {
+    throw new Error('')
+  } else {
+    throw new Error('Invalid command')
+  }
 }
+
+export default command

@@ -1,18 +1,16 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import '../css/App.css'
-import Console from './console/Console.jsx'
-import Vue from './graphic/Vue.jsx'
-import controller from '../js/controller.js'
+import Console from './console/Console'
+import Vue from './graphic/Vue'
+import controller from '../js/controller'
 
 class App extends Component {
- 
   constructor(props) {
-        super(props)
-        this.state = {
-          txt: '',
-          graph: controller.init(),
-        }      
-   
+    super(props)
+    this.state = {
+      txt: '',
+      graph: controller.init()
+    }
   }
 
   handleConsole = (textValue) => {
@@ -26,11 +24,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Console onConsole={this.handleConsole} command={this.state.txt}/>
-        <Vue graph={this.state.graph}/>
+        <Console onConsole={this.handleConsole} command={this.state.txt} />
+        <Vue graph={this.state.graph} />
       </div>
     )
   }
 }
 
-export default App;
+export default App

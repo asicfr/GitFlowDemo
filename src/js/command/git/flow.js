@@ -1,14 +1,19 @@
+import feature from './flow/feature'
+import release from './flow/release'
+
 const functions = {
-    feature : require('./flow/feature'),
-    release : require('./flow/release')
+  feature,
+  release
 }
 
-module.exports = (command, graph) => {
-    const {words} = command
-    const fn = functions[words[2]]
-    if (!fn) {
-        throw new Error('Invalid command')
-    }
+const flow = (command, graph) => {
+  const { words } = command
+  const fn = functions[words[2]]
+  if (!fn) {
+    throw new Error('Invalid command')
+  }
 
-    return fn(command, graph)
+  return fn(command, graph)
 }
+
+export default flow
