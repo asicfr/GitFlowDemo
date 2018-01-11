@@ -1,6 +1,6 @@
-const constantrelease = {
+const constanthotfix = {
 
-  releaseStartIn: {
+  hotfixStartIn: {
     graph: {
       commits: {
         C0: {
@@ -21,7 +21,7 @@ const constantrelease = {
     console: ''
   },
 
-  releaseStartOut: {
+  hotfixStartOut: {
     graph: {
       commits: {
         C0: {
@@ -32,18 +32,18 @@ const constantrelease = {
         }
       },
       branches: {
-        master: { commit: 'C0', branches: { hotfix: [] } },
-        develop: { commit: 'C1', branches: { feature: [], release: ['goku'] } },
-        goku: { commit: 'C1' }
+        master: { commit: 'C0', branches: { hotfix: ['repair'] } },
+        develop: { commit: 'C1', branches: { feature: [], release: [] } },
+        repair: { commit: 'C1' }
       },
-      currentBranch: 'goku',
+      currentBranch: 'repair',
       currentCommit: 'C1',
       lastCommit: 'C1'
     },
-    console: 'release goku created'
+    console: 'hotfix repair created'
   },
 
-  releaseFinishIn: {
+  hotfixFinishIn: {
     graph: {
       commits: {
         C0: {
@@ -53,22 +53,22 @@ const constantrelease = {
           parent: ['C0'], otherParents: [], childs: ['C2'], branches: ['develop']
         },
         C2: {
-          parent: ['C1'], otherParents: [], childs: [], branches: ['goku']
+          parent: ['C1'], otherParents: [], childs: [], branches: ['repair']
         }
       },
       branches: {
-        master: { commit: 'C0', branches: { hotfix: [] } },
-        develop: { commit: 'C1', branches: { feature: [], release: ['goku'] } },
-        goku: { commit: 'C2' }
+        master: { commit: 'C0', branches: { hotfix: ['repair'] } },
+        develop: { commit: 'C1', branches: { feature: [], release: [] } },
+        repair: { commit: 'C2' }
       },
-      currentBranch: 'goku',
+      currentBranch: 'repair',
       currentCommit: 'C2',
       lastCommit: 'C2'
     },
     console: ''
   },
 
-  releaseFinishOut: {
+  hotfixFinishOut: {
     graph: {
       commits: {
         C0: {
@@ -78,19 +78,19 @@ const constantrelease = {
           parent: ['C0'], otherParents: [], childs: ['C2'], branches: ['develop']
         },
         C2: {
-          parent: ['C1'], otherParents: [], childs: [], branches: ['develop']
+          parent: ['C1'], otherParents: [], childs: [], branches: ['master']
         }
       },
       branches: {
         master: { commit: 'C2', branches: { hotfix: [] } },
         develop: { commit: 'C2', branches: { feature: [], release: [] } }
       },
-      currentBranch: 'develop',
+      currentBranch: 'master',
       currentCommit: 'C2',
       lastCommit: 'C2'
     },
-    console: 'release goku finish | You are now in develop'
+    console: 'hotfix repair finish | You are now in master'
   }
 }
 
-export default constantrelease
+export default constanthotfix

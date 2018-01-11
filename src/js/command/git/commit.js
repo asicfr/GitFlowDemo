@@ -1,47 +1,44 @@
-const utils = require('../../utils')
+import utils from '../../utils'
 
-module.exports = (command, graph) => {
-    const {words} = command
-    if (words.length > 2)
-        throw new Error('Too many words')
-    const currentBrSplit = graph.currentBr.split('/')
-    const splitNumber = graph.lastCm.split(/(\d+)/)
-    const newCommit = {commit: 'C' + (parseInt(splitNumber[1]) + 1), parent:[graph.selectedCommit], child: [], branch: [currentBrSplit[0]]}
-    return Object.assign({}, graph, {
-        tree : updateTreeGraph(graph.tree, newCommit, graph.selectedCommit),
-        selectedCommit : newCommit.commit,
-        lastCm : newCommit.commit,
-        branch : updateBranch(graph.branch, graph.currentBr, newCommit.commit)
-    })
+const commandCommit = (command, graph) => {
+  const currentBrSplit = graph.currentBranch.split('/')
+  const splitNumber = graph.lastCommit.split(/(\d+)/)
+  const keyNewCommit = `C${parseInt(splitNumber[1], 10) + 1}`
+  const ValueNewCommit = {
+    parent: [graph.currentCommit], otherParents: [], childs: [], branches: [currentBrSplit[0]]
+  }
+  return Object.assign({}, graph, {
+    commits: updateTreeGraph(graph.commits, keyNewCommit, ValueNewCommit, graph.currentCommit),
+    currentCommit: keyNewCommit,
+    lastCommit: keyNewCommit,
+    branches: updateBranch(graph.branches, graph.currentBranch, keyNewCommit)
+  })
 }
 
-const updateTreeGraph = (tree, newCommit, selectedCommit ) => {
-    tree = utils.immutablePush(tree, newCommit), addChildToParent(selectedCommit, newCommit.commit, tree)
-    return tree
+const updateTreeGraph = (commits, keyNewCommit, ValueNewCommit, currentCommit) => Object.assign({}, commits, {
+  [currentCommit]: addChildToParent(keyNewCommit, commits[currentCommit]),
+  [keyNewCommit]: ValueNewCommit
+})
+
+const addChildToParent = (child, parent) => Object.assign({}, parent, {
+  childs: utils.immutablePush(parent.childs, child)
+})
+
+const updateBranch = (branches, currentbranch, keyNewCommit) => Object.assign({}, branches, {
+  [currentbranch]: updateCommitOnBranch(branches[currentbranch], keyNewCommit)
+})
+
+const updateCommitOnBranch = (currentbranch, keyNewCommit) => Object.assign({}, currentbranch, {
+  commit: keyNewCommit
+})
+
+const commit = (command, gitflow) => {
+  const { words } = command
+  if (words.length > 2) { throw new Error('Too many words') }
+  return Object.assign({}, gitflow, {
+    console: '',
+    graph: commandCommit(words, gitflow.graph)
+  })
 }
 
-const addChildToParent = (parent, child, tree) => { 
-    const treeParent = tree.indexOf(tree.find(o => o.commit === parent))
-    tree[treeParent].child = utils.immutablePush(tree[treeParent].child, child)
-    return tree
-}   
-
-const updateBranch = (branch, currentbranch, newcommit) => {
-    if (currentbranch.indexOf('/') > -1) {
-       return updateWhenFlow(branch, currentbranch, newcommit)
-    } else {
-        function checkBranch(branch) {
-            return branch === currentbranch
-        }
-        const arrayBranch = Object.keys(branch)
-        branch[arrayBranch.find(checkBranch)] = newcommit
-        return branch
-    }
-}
-
-const updateWhenFlow = (branch, currentbranch, newcommit) => {
-    const ArraySplitFlow = currentbranch.split('/')
-    const index = branch[ArraySplitFlow[0]].indexOf(branch[ArraySplitFlow[0]].find(f => f.name === ArraySplitFlow[1]))
-    branch[ArraySplitFlow[0]][index].commit = newcommit
-    return branch
-}
+export default commit

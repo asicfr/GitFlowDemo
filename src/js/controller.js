@@ -1,61 +1,50 @@
+import analyzeCommand from './command'
 
-const git = require('./command/git.js')
-const utils = require('./utils.js')
-const analyzeCommand = require('./command.js')
-
-const graphInit = {
-    tree: [{ commit: 'C0', parent:[], child: [], branch: ['develop', 'master']}],
-    branch: {
-        feature:[],
-        develop:'C0',
-        release :[],
-        master:'C0',
-        hotfix:[]
+const gitflow = {
+  graph: {
+    commits: {
+      C0: {
+        parent: [], otherParents: [], childs: [], branches: ['develop', 'master']
+      }
     },
-    currentBr:'develop',
-    selectedCommit: 'C0',
-    lastCm: 'C0'
-}
-
-module.exports = {
-    dataControl : (text, graph) => {
-        const command = getCommand(text)
-        try {
-            return {graph :  analyzeCommand(command, graph), console: text}
-        }
-        catch (error) {
-            return {graph, console: error.message}
-        }
-      },
-    
-    init : () => {
-        return graphInit
-    }
+    branches: {
+      master: { commit: 'C0', branches: { hotfix: [] } },
+      develop: { commit: 'C0', branches: { feature: [], release: [] } }
+    },
+    currentBranch: 'develop',
+    currentCommit: 'C0',
+    lastCommit: 'C0'
+  },
+  console: 'Bienvenue sur l\'outil de test GitFlow'
 }
 
 const getCommand = (txt) => {
-    const txtOnlyOneSpace = txt.replace(/\s\s+/g, ' ')
-    const txtSplit = txtOnlyOneSpace.split(' -')
-    
-    
-    const command = {
-        words: txtSplit[0].split(' '),
-        args: {
-             
-        }
+  const txtOnlyOneSpace = txt.replace(/\s\s+/g, ' ')
+  const txtSplit = txtOnlyOneSpace.split(' -')
+
+  const command = {
+    words: txtSplit[0].split(' '),
+    args: {
+
     }
-    return command
+  }
+  return command
 }
 
-    /*
-const analyse = (txt) => {
-    txt = txt.substring(4)
-    txt = txt.split(' ')
-    return txt   
+const controller = {
+  dataControl: (text, gitflowUpdate) => {
+    const command = getCommand(text)
+    try {
+      return analyzeCommand(command, gitflowUpdate)
+    } catch (error) {
+      return Object.assign({}, gitflowUpdate, {
+        console: error.message
+      })
+    }
+  },
+
+  init: () => gitflow
 }
 
-module.exports = analyse;
-*/
-
-
+export default controller
 

@@ -1,36 +1,31 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import '../css/App.css'
-import Console from './console/Console.jsx'
-import Vue from './graphic/Vue.jsx'
-import controller from '../js/controller.js'
+import ConsoleUi from './console/Console'
+import VueUi from './graphic/Vue'
+import controller from '../js/controller'
 
 class App extends Component {
- 
   constructor(props) {
-        super(props)
-        this.state = {
-          txt: '',
-          graph: controller.init(),
-        }      
-   
+    super(props)
+    this.state = {
+      gitflow: controller.init()
+    }
   }
-
-  handleConsole = (textValue) => {
-    const dataflow = controller.dataControl(textValue, this.state.graph)
+  handleConsole = (command) => {
+    const dataflow = controller.dataControl(command, this.state.gitflow)
     this.setState({
-      txt: dataflow.console,
-      graph: dataflow.graph
+      gitflow: dataflow
     })
   }
 
   render() {
     return (
       <div className="App">
-        <Console onConsole={this.handleConsole} command={this.state.txt}/>
-        <Vue graph={this.state.graph}/>
+        <ConsoleUi onConsole={this.handleConsole} console={this.state.gitflow.console} />
+        <VueUi txt={this.state.gitflow.console} graph={this.state.gitflow.graph} />
       </div>
     )
   }
 }
 
-export default App;
+export default App

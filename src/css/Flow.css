@@ -8,178 +8,59 @@
     overflow:hidden;
 }
 
-.branch {
-    float: left;
-    width: 20%;
-    color: white;
-}
-
-.branch h1 {
-    width: 50%;
-    padding-top: 3%;
-    height: 3.3vh;
+.circle {
+    position: relative;
+    width: 5vh;
+    display: block;
+    margin: 1vh 0;
+    background-color: transparent;
+    color: #222;
     text-align: center;
-    margin: 0 auto;
-    z-index: 10;
-    font-size: 2vh;
-    margin-bottom: 10px;
-}
-
-.trait {
-    text-align: center;
-    margin-top: -3vh;
-    width: 1vh;
+   
+  }
+  
+  .circle:after {
+    display: block;
+    padding-bottom: 100%;
+    width: 100%;
+    height: 0;
+    border-radius: 50%;
+    background-color: #ddd;
+    content: "";
+    border: 0.3vh solid #404040;
+  }
+  
+  .circle__inner {
     position: absolute;
     top: 0;
+    bottom: 0;
     left: 0;
-    z-index: -10;
-    box-shadow: 2px 2px 15px 0px #656565;
-    height:103vh;
-}
-
-.feature * {
-    border-color: rgb(103, 189, 103);
-    background: rgb(103, 189, 103);
-}
-
-.feature .trait {
- left : 38.5%;
-}
-
-.hotfix * {
-    border-color: rgb(252, 110, 110);
-    background: rgb(252, 110, 110);
-}
-
-.hotfix .trait {
-    left : 90.5%;
-}
-
-.develop * {
-    border-color: rgb(121, 121, 236);
-    background: rgb(121, 121, 236);
-}
-
-.develop .trait {
-    left : 51.5%;
-}
-
-.release * {
-    border-color:rgb(253, 203, 108);
-    background: rgb(253, 203, 108);
-}
-
-.release .trait {
-    left : 64.5%;
-}
-
-.master * {
-    border-color:rgb(124, 228, 228);
-    background: rgb(124, 228, 228);
-}
-
-.master .trait {
-    left : 77.5%;
-}
-
-.commit {
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    border: 1px solid white;
-    border-radius: 50%; /* one half of ( (border * 2) + height + padding ) */
-    height: 5vh; 
-    width: 5vh;
-    
-}
-
-.commitText {
-    background: none;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .circle__wrapper {
+    display: table;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .circle__content {
     display: table-cell;
-    padding: 1.2vh;
-    padding-top: 1.5vh;
+    padding: 1em;
     vertical-align: middle;
-  }
-
-@media screen and (max-width: 1200px) {
-
-    .feature .trait {
-        left : 47.6%;
-    }
-
-    .develop .trait {
-        left : 58.6%;
-    }
-    
-    .release .trait {
-        left : 69.6%;
-    }
-
-    .master .trait {
-        left : 80.6%;
-    }
-
-    .hotfix .trait {
-        left : 91.6%;
-    }   
+    font-weight: bold;
   }
   
-  @media screen and (max-width: 1024px) {
-    .feature .trait {
-        left : 47.6%;
+  @media (min-width: 480px) {
+    .circle__content {
+      font-size: 1.7vh;
     }
-
-    .develop .trait {
-        left : 58.6%;
-    }
-    
-    .release .trait {
-        left : 69.6%;
-    }
-
-    .master .trait {
-        left : 80.6%;
-    }
-
-    .hotfix .trait {
-        left : 91.6%;
-    }
-
-   
   }
   
-  
-  @media screen and (max-width: 768px) {
-
-    .branch h1 {
-        width: 80%;
-        margin-top: 5%;
+  @media (min-width: 768px) {
+    .circle__content {
+      font-size: 1.7vh;
     }
-
-    .trait {
-        margin-top: 70vh;
-    }
-
-    .feature .trait {
-        left : 9.8%;
-    }
-
-    .develop .trait {
-        left : 29.9%;
-    }
-    
-    .release .trait {
-        left : 50%;
-    }
-
-    .master .trait {
-        left : 69.9%;
-    }
-
-    .hotfix .trait {
-        left : 90.2%;
-    }
-
-   
   }
-  
+

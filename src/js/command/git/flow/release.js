@@ -1,43 +1,93 @@
-const utils = require('../../../utils')
+import utils from '../../../utils'
+import utilsGitFlow from './utilsGitFlow'
 
-module.exports = (command, graph) => {
-    const {words} = command
-    return releaseCommand[words[3]](words, graph)
-}
+const addToDevelopRelease = (develop, nameRelease) => Object.assign({}, develop, {
+  branches: Object.assign({}, develop.branches, {
+    release: utils.immutablePush(develop.branches.release, nameRelease)
+  })
+})
+
+const addReleaseToBranches = (branches, currentCommit, nameRelease) => Object.assign({}, branches, {
+  develop: addToDevelopRelease(branches.develop, nameRelease),
+  [nameRelease]: { commit: currentCommit }
+})
 
 const startReleaseFn = (words, graph) => {
-    const newRelease = {name: words[4], commit: graph.selectedCommit}
-    return Object.assign({}, graph, {
-        branch: addRelease(graph.branch, newRelease),
-        currentBr: 'release/' + words[4]
-    })
+  utilsGitFlow.checkNameBranches(words, graph)
+  const nameRelease = words[4]
+  return Object.assign({}, graph, {
+    branches: addReleaseToBranches(graph.branches, graph.currentCommit, nameRelease),
+    currentBranch: nameRelease
+  })
 }
 
-const addRelease = (branch, newRelease) => {
-    return Object.assign({}, branch, {
-        release: utils.immutablePush(branch.release, newRelease)
-    })
+const deleteReleaseInBranches = (commit, nameRelease) => {
+  const indexRelease = commit.branches.indexOf(nameRelease)
+  return Object.assign({}, commit, {
+    branches: utils.immutableSplice(commit.branches, indexRelease, 1, 'develop')
+  })
 }
+
+
+const deleteReleaseToDevelop = (develop, currentCommit, nameRelease) => {
+  const indexRelease = develop.branches.release.indexOf(nameRelease)
+  return Object.assign({}, develop, {
+    commit: currentCommit,
+    branches: Object.assign({}, develop.branches, {
+      release: utils.immutableDelete(develop.branches.release, indexRelease)
+    })
+  })
+}
+
+const deleteReleaseToBranches = (branches, currentCommit, nameRelease) => {
+  delete branches[nameRelease]
+  return Object.assign({}, branches, {
+    master: Object.assign({}, branches.master, {
+      commit: currentCommit
+    }),
+    develop: deleteReleaseToDevelop(branches.develop, currentCommit, nameRelease)
+  })
+}
+
+const updateCommitReleaseToDevelop = (commits, currentCommit, nameRelease) =>
+  Object.assign({}, commits, {
+    [currentCommit]: deleteReleaseInBranches(commits[currentCommit], nameRelease)
+  })
 
 const finishReleaseFn = (words, graph) => {
-    return Object.assign({}, graph, {
-        branch: updateBranch(graph.branch, words[4]),
-        currentBr: 'develop'
-    })
-}
-
-const updateBranch = (branch, nameRelease ) => {
-    const index = branch.release.indexOf(branch.release.find(f => f.name === nameRelease))
-    const commit = branch.release[index].commit
-    const newArrayRelease = utils.immutableDelete(branch.release, index)
-    return Object.assign({}, branch, {
-        release: newArrayRelease,
-        develop: commit,
-        master: commit
-    })
+  if (!graph.branches[words[4]]) {
+    throw new Error('Any release with this name')
+  }
+  return Object.assign({}, graph, {
+    commits: updateCommitReleaseToDevelop(graph.commits, graph.currentCommit, words[4]),
+    branches: deleteReleaseToBranches(graph.branches, graph.currentCommit, words[4]),
+    currentBranch: 'develop'
+  })
 }
 
 const releaseCommand = {
-    start: startReleaseFn,
-    finish: finishReleaseFn
+  start: startReleaseFn,
+  finish: finishReleaseFn
 }
+
+const gitFlowRelease = (words, graph) => {
+  try {
+    if (utilsGitFlow.checkNameBranchesReserved(words, graph)) {
+      throw new Error('this name is reserved')
+    }
+    return releaseCommand[words[3]](words, graph)
+  } catch (err) {
+    return graph
+  }
+}
+
+
+const release = (command, gitflow) => {
+  const { words } = command
+  return Object.assign({}, gitflow, {
+    console: utilsGitFlow.flowConsole(words, gitflow.graph, 'develop'),
+    graph: gitFlowRelease(words, gitflow.graph)
+  })
+}
+
+export default release

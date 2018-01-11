@@ -1,7 +1,9 @@
 @font-face {
   font-family: consoleFont;
-  src: url(./fonts/Ubuntu-L.ttf);
+  src: url(./fonts/Consolas.ttf);
 }
+
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 
 .App {
   text-align: center;
@@ -11,52 +13,43 @@
 }
 
 .App-Console {
-  background: black;
+  background: #EFEFEF;
   background-size: cover;
   width: 30%;
-  height: 95vh;
+  height: 92vh;
   float: left;
-  margin: 2vh;
-  box-shadow: -0.5vh 0.5vh 4vh 0.4vh grey;
+  margin: 3vh;
+  box-shadow: -0.2vh 0.2vh 2vh 0.2vh  rgba(0,0,0,0.3);       
   z-index : 1;
 }
 
 .App-Header {
-  background: #ffffff;
+  background: #EFEFEF;
   width: 100%;
-  height: 3.8%;
-  margin: 0.05vh auto;
+  height: 3%;
   clear: none;
 }
 
-
 .imgHeaders {
-  height: 80%;
+  height: 2.8vh;
   float: left;
-  margin-top: 0.5%;
   -webkit-user-select: none;  /* Chrome all / Safari all */
   -moz-user-select: none;     /* Firefox all */
   -ms-user-select: none;      /* IE 10+ */
   user-select: none;  
 }
 
-.imgClose {
-  margin: 0.4vh auto;
-  float: right;
-  margin-right: 1vh;
-}
-
 .imgGit {
-  margin: 0.4vh auto;
+  margin: 0.6vh auto;
   margin-left: 1vh; 
 }
 
 .App-Header p {
-  color: black;
   font-family: consoleFont;
-  font-size: 1.9vh;
-  float: left;
-  margin: 0.5vh auto;
+  color: black;
+  font-size: 2vh;
+  float: left;  
+  margin: 0.8vh auto;
   margin-left: 1vh;
   -webkit-user-select: none;  /* Chrome all / Safari all */
   -moz-user-select: none;     /* Firefox all */
@@ -65,12 +58,11 @@
 }
 
 .App-Body {
-  font-size: 1.5vh;
+  font-size: 1.8vh;
   font-family: consoleFont;
-  color: white;
   width: 100%;
-  height: 92.2%;
-  background: #000;
+  height: 90%;
+  background: #EFEFEF;
   overflow: hidden;
 }
 
@@ -82,37 +74,43 @@
 
 .App-Body p {
   opacity: 0.8;
-  font-size: 1.5h;
+  font-size: 2h;
   float: left;
   font-family: consoleFont;
   margin: 0 auto;
   margin-left: 1vh;
-  margin-top: 1%;
-  
+  margin-top: 0.2vh;
 }
 
 .dollars {
+  font-weight: bold;
   -webkit-user-select: none;  /* Chrome all / Safari all */
   -moz-user-select: none;     /* Firefox all */
   -ms-user-select: none;      /* IE 10+ */
   user-select: none;  
+}
+
+.github {
+  text-align: center;
+  background: url("../img/media.png");
+  margin-top: 1vh;
+  font-size: 2vh;
 }
 
 .App-Footer {
   width: 100%;
-  height: 4%;
-  background: #000;
-  color: white;
+  height: 5%;
+  background: #EFEFEF;
   overflow: auto;
   clear: none;
   font-family: consoleFont;
   overflow: hidden;
-  margin-top: 0.4vh;
+  margin-top: 0.6vh;
 }
 
 .App-Footer p {
   opacity: 0.8;
-  font-size: 1.5vh;
+  font-size: 1.8vh;
   float: left;
   font-family: consoleFont;
   margin: 0 auto;
@@ -121,7 +119,7 @@
   -moz-user-select: none;     /* Firefox all */
   -ms-user-select: none;      /* IE 10+ */
   user-select: none;  
-  margin-top: 0.7vh;
+  margin-top: 1vh;
 }
 
 .App-Footer input {
@@ -130,10 +128,9 @@
   width: 90%;
   border: none;
   float: left;
-  height: 80%;
-  color: white;
-  font-size: 1.5vh;
-  background: #000;
+  height: 85%;
+  font-size: 1.8vh;
+  background: #EFEFEF;
   margin: 0 auto;
   margin-left: 1vh;
   overflow: hidden;
@@ -144,13 +141,12 @@
 }
 
 .App-Graph {
-  display: table;
+  text-align: center;
+  margin: 0 auto;
   width: 65%;
   padding-top: 3vh;
   float: left;
   font-size: 1.9vh;
-
-  
 }
 
 @media screen and (max-width: 1400px) {
@@ -160,7 +156,6 @@
 
   .App-Header p {
     margin-top: 1vh;
-    font-size: 1.5vh;
   }
 }
 
@@ -169,7 +164,6 @@
     width: 40%;
   }
   .App-Header {
-    background: #ffffff;
     height: 3.9%;
   }
   .App-Body {
@@ -183,12 +177,18 @@
 }
 
 @media screen and (max-width: 1024px) {
+  .App {
+    overflow: auto;
+  }
+  .App-Graph {
+    margin-top: 2vh;
+  }
   .App-Console {
     width: 40%;
 
   }
   .App-Header {
-    background: #ffffff;
+
     height: 4.2%;
   }
   .App-Body {
@@ -210,7 +210,6 @@
     margin: 0;
   }
   .App-Header {
-    background: #ffffff;
     height: 4vh;
   }
 
@@ -232,7 +231,7 @@
     height: 90%
   }
   .App-Footer p {
-    margin-top: 1vh;
+    margin-top: 0.7vh;
   }
 }
 

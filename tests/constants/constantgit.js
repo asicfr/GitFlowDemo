@@ -1,99 +1,172 @@
-module.exports = {
-    
-    graphInit : {
-        tree: [{ commit: 'C0', parent:[], child: [], branch: ['develop', 'master']}],
-        branch: {
-            master:'C0',
-            develop:'C0',
-            feature:[],
-            hotfix:[],
-            release :[]
-        },
-        currentBr:'develop',
-        selectedCommit: 'C0',
-        lastCm: 'C0'
-    },
-    
-    graphFinale : {
-        tree: [ {commit: 'C0', parent:[], child: ['C1'], branch: ['develop', 'master'] },
-                {commit: 'C1', parent:['C0'], child: [], branch: ['develop'] }
-        ],
-        branch: {
-            master:'C0',
-            develop:'C1',
-            feature:[],
-            hotfix:[],
-            release :[]
-        },
-        currentBr:'develop',
-        selectedCommit: 'C1',
-        lastCm: 'C1'  
-    },
+const constantgit = {
 
-    graphFinaleDeux : {
-        tree: [ {commit: 'C0', parent:[], child: ['C1'], branch: ['develop', 'master']  },
-                {commit: 'C1', parent:['C0'], child: ['C1'], branch: ['develop']},
-                {commit: 'C2', parent:['C0'], child: [], branch: ['develop'] }
-        ],
-        branch: {
-            master:'C0',
-            develop:'C2',
-            feature:[],
-            hotfix:[],
-            release :[]
-        },
-        currentBr:'develop',
-        selectedCommit: 'C2',
-        lastCm: 'C2'
+  init: {
+    graph: {
+      commits: {
+        C0: {
+          parent: [], otherParents: [], childs: [], branches: ['develop', 'master']
+        }
+      },
+      branches: {
+        master: { commit: 'C0', branches: { hotfix: [] } },
+        develop: { commit: 'C0', branches: { feature: [], release: [] } }
+      },
+      currentBranch: 'develop',
+      currentCommit: 'C0',
+      lastCommit: 'C0'
     },
+    console: 'Bienvenue sur l\'outil de test GitFlow'
+  },
 
-    graphPush : {
-        tree: [ {commit: 'C0', parent:[], child: ['C1'] },
-                {commit: 'C1', parent:['C0'], child: [] }
-        ],
-        branch: {
-            master:'C0',
-            develop:'C0',
-            feature:[],
-            hotfix:[],
-            release :[]
-        },
-        currentBr:'develop',
-        selectedCommit: 'C0',
-        lastCm: 'C1'  
+
+  initError: {
+    graph: {
+      commits: {
+        C0: {
+          parent: [], otherParents: [], childs: [], branches: ['develop', 'master']
+        }
+      },
+      branches: {
+        master: { commit: 'C0', branches: { hotfix: [] } },
+        develop: { commit: 'C0', branches: { feature: [], release: [] } }
+      },
+      currentBranch: 'develop',
+      currentCommit: 'C0',
+      lastCommit: 'C0'
     },
+    console: 'Too many words'
+  },
 
-    
-    graphCheckoutInit: {
-        tree: [ {commit: 'C0', parent:[], child: ['C1'], branch: ['develop', 'master'] },
-                {commit: 'C1', parent:['C0'], child: [], branch: ['develop'] }
-        ],
-        branch: {
-            master:'C0',
-            develop:'C1',
-            feature:[],
-            hotfix:[],
-            release :[]
+  commmitOut: {
+    graph: {
+      commits: {
+        C0: {
+          parent: [], otherParents: [], childs: ['C1'], branches: ['develop', 'master']
         },
-        currentBr:'develop',
-        selectedCommit: 'C1',
-        lastCm: 'C1'  
+        C1: {
+          parent: ['C0'], otherParents: [], childs: [], branches: ['develop']
+        }
+      },
+      branches: {
+        master: { commit: 'C0', branches: { hotfix: [] } },
+        develop: { commit: 'C1', branches: { feature: [], release: [] } }
+      },
+      currentBranch: 'develop',
+      currentCommit: 'C1',
+      lastCommit: 'C1'
     },
+    console: ''
+  },
 
-    graphCheckoutFinale: {
-        tree: [ {commit: 'C0', parent:[], child: ['C1'], branch: ['develop', 'master'] },
-                {commit: 'C1', parent:['C0'], child: [], branch: ['develop'] }
-        ],
-        branch: {
-            master:'C0',
-            develop:'C1',
-            feature:[],
-            hotfix:[],
-            release :[]
+  commmitDeuxOut: {
+    graph: {
+      commits: {
+        C0: {
+          parent: [], otherParents: [], childs: ['C1'], branches: ['develop', 'master']
         },
-        currentBr:'master',
-        selectedCommit: 'C0',
-        lastCm: 'C1'  
-    }
+        C1: {
+          parent: ['C0'], otherParents: [], childs: ['C2'], branches: ['develop']
+        },
+        C2: {
+          parent: ['C1'], otherParents: [], childs: [], branches: ['develop']
+        }
+      },
+      branches: {
+        master: { commit: 'C0', branches: { hotfix: [] } },
+        develop: { commit: 'C2', branches: { feature: [], release: [] } }
+      },
+      currentBranch: 'develop',
+      currentCommit: 'C2',
+      lastCommit: 'C2'
+    },
+    console: ''
+  },
+
+  checkoutInit: {
+    graph: {
+      commits: {
+        C0: {
+          parent: [], otherParents: [], childs: ['C1'], branches: ['develop', 'master']
+        },
+        C1: {
+          parent: ['C0'], otherParents: [], childs: [], branches: ['develop']
+        }
+      },
+      branches: {
+        master: { commit: 'C0', branches: { hotfix: [] } },
+        develop: { commit: 'C1', branches: { feature: [], release: [] } }
+      },
+      currentBranch: 'develop',
+      currentCommit: 'C1',
+      lastCommit: 'C1'
+    },
+    console: ''
+  },
+
+  checkoutFinale: {
+    graph: {
+      commits: {
+        C0: {
+          parent: [], otherParents: [], childs: ['C1'], branches: ['develop', 'master']
+        },
+        C1: {
+          parent: ['C0'], otherParents: [], childs: [], branches: ['develop']
+        }
+      },
+      branches: {
+        master: { commit: 'C0', branches: { hotfix: [] } },
+        develop: { commit: 'C1', branches: { feature: [], release: [] } }
+      },
+      currentBranch: 'master',
+      currentCommit: 'C0',
+      lastCommit: 'C1'
+    },
+    console: 'You are now in master'
+  },
+
+  checkoutGitFlowIn: {
+    graph: {
+      commits: {
+        C0: {
+          parent: [], otherParents: [], childs: ['C1'], branches: ['develop', 'master']
+        },
+        C1: {
+          parent: ['C0'], otherParents: [], childs: [], branches: ['develop']
+        }
+      },
+      branches: {
+        master: { commit: 'C0', branches: { hotfix: [] } },
+        develop: { commit: 'C1', branches: { feature: ['yolow'], release: [] } },
+        yolow: { commit: 'C1' }
+      },
+      currentBranch: 'develop',
+      currentCommit: 'C1',
+      lastCommit: 'C1'
+    },
+    console: ''
+  },
+  checkoutGitFlowOut: {
+    graph: {
+      commits: {
+        C0: {
+          parent: [], otherParents: [], childs: ['C1'], branches: ['develop', 'master']
+        },
+        C1: {
+          parent: ['C0'], otherParents: [], childs: [], branches: ['develop']
+        }
+      },
+      branches: {
+        master: { commit: 'C0', branches: { hotfix: [] } },
+        develop: { commit: 'C1', branches: { feature: ['yolow'], release: [] } },
+        yolow: { commit: 'C1' }
+      },
+      currentBranch: 'yolow',
+      currentCommit: 'C1',
+      lastCommit: 'C1'
+    },
+    console: 'You are now in feature/yolow'
+  }
 
 }
+
+export default constantgit
