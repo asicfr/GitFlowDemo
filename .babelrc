@@ -1,0 +1,23 @@
+{
+    "presets": ["react", "env"],
+    "env": {
+      "test": {
+        "plugins": [
+          "transform-es2015-modules-commonjs"
+        ]
+      }
+    },
+    "plugins": [
+      "transform-decorators-legacy",
+      "transform-object-rest-spread",
+      "transform-class-properties",
+      [
+        "module-resolver",
+        {
+          "root": [
+            "src"
+          ]
+        }
+      ]
+    ]
+  }

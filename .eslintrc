@@ -1,0 +1,30 @@
+{
+    "extends": ["eslint-config-airbnb", "plugin:react/recommended"],
+    "env": {
+        "browser": true,
+        "node": true,
+        "jest": true,
+        "es6": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 6,
+      "sourceType": "module",
+      "ecmaFeatures": {
+          "jsx": true
+      }
+    },
+    "parser": "babel-eslint",
+    "plugins": [
+        "react"
+      ],
+    "rules": {
+      "linebreak-style": 0,
+      "vars-on-top": 2,
+      "comma-dangle": [ 2, "never" ],
+      "quotes": ["error", "single"],
+      "semi": [
+          "error",
+          "never"
+      ]
+    }
+  }

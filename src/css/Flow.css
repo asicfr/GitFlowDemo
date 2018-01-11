@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+.Flow {  
+    text-align: center;
+    width: 30%;
+    height: 100%;
+    margin: 0 auto;
+    overflow:hidden;
+}
+
+.circle {
+    position: relative;
+    width: 5vh;
+    display: block;
+    margin: 1vh 0;
+    background-color: transparent;
+    color: #222;
+    text-align: center;
+   
+  }
+  
+  .circle:after {
+    display: block;
+    padding-bottom: 100%;
+    width: 100%;
+    height: 0;
+    border-radius: 50%;
+    background-color: #ddd;
+    content: "";
+    border: 0.3vh solid #404040;
+  }
+  
+  .circle__inner {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .circle__wrapper {
+    display: table;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .circle__content {
+    display: table-cell;
+    padding: 1em;
+    vertical-align: middle;
+    font-weight: bold;
+  }
+  
+  @media (min-width: 480px) {
+    .circle__content {
+      font-size: 1.7vh;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .circle__content {
+      font-size: 1.7vh;
+    }
+  }
+
