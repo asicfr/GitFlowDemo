@@ -1,9 +1,12 @@
-const commandCheckout = (branch, graph) => Object.assign({}, graph, {
-  currentBranch: branch,
-  currentCommit: checkCommitBranch(graph, branch)
-})
+
 
 const checkCommitBranch = (graph, branch) => graph.branches[branch].commit
+
+const checkIfBranchExist = (nameBranch, arrayBranch) => {
+  if (arrayBranch.indexOf(nameBranch) !== 1) {
+    return nameBranch
+  }
+}
 
 const checkNameBranch = (words, branches) => {
   if (words[2] === 'develop' || words[2] === 'master') {
@@ -21,18 +24,28 @@ const checkNameBranch = (words, branches) => {
   throw new Error('Any branch with this name')
 }
 
-const checkIfBranchExist = (nameBranch, arrayBranch) => {
-  if (arrayBranch.indexOf(nameBranch) !== 1) {
-    return nameBranch
+const commandCheckout = (words, branch, graph) => {
+  console.log(words.length)
+  Object.assign({}, graph, {
+    currentBranch: branch,
+    currentCommit: checkCommitBranch(graph, branch)
+  })
+}
+
+const consoleResponse = (command) => {
+  console.log(command.args)
+  if (command.args) {
+    return 'this simulation don\'t use args of checkout, please use git flow functions'
   }
+  return `You are now in ${command.words[2]}`
 }
 
 const checkout = (command, gitflow) => {
   const { words } = command
   const branch = checkNameBranch(words, gitflow.graph.branches)
   return Object.assign({}, gitflow, {
-    graph: commandCheckout(branch, gitflow.graph),
-    console: `You are now in ${words[2]}`
+    graph: commandCheckout(words, branch, gitflow.graph),
+    console: consoleResponse(command)
   })
 }
 

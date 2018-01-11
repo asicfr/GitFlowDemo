@@ -17,18 +17,24 @@ const startFeatureFn = (words, graph) => {
   utilsGitFlow.checkNameBranches(words, graph)
   const nameFeature = words[4]
   return Object.assign({}, graph, {
+
     branches: addFeatureToBranches(graph.branches, graph.currentCommit, nameFeature),
     currentBranch: nameFeature
   })
 }
 
-const deleteFeatureInBranches = (commit, nameFeature) => {
+const deleteFeatureInBranchesOnCommit = (commit, nameFeature) => {
   const indexFeature = commit.branches.indexOf(nameFeature)
+  if (commit.branches.indexOf('develop') === -1) {
+    return Object.assign({}, commit, {
+      branches: utils.immutableSplice(commit.branches, indexFeature, 1, 'develop')
+    })
+  }
+
   return Object.assign({}, commit, {
-    branches: utils.immutableSplice(commit.branches, indexFeature, 1, 'develop')
+    branches: utils.immutableSplice(commit.branches, indexFeature, 1)
   })
 }
-
 
 const deleteFeatureToDevelop = (develop, currentCommit, nameFeature) => {
   const indexFeature = develop.branches.feature.indexOf(nameFeature)
@@ -47,17 +53,17 @@ const deleteFeatureToBranches = (branches, currentCommit, nameFeature) => {
   })
 }
 
-const updateCommitFeatureToDevelop = (commits, currentCommit, nameFeature) =>
+const deleteFeatureInCommmits = (commits, currentCommit, nameFeature) =>
   Object.assign({}, commits, {
-    [currentCommit]: deleteFeatureInBranches(commits[currentCommit], nameFeature)
+    [currentCommit]: deleteFeatureInBranchesOnCommit(commits[currentCommit], nameFeature)
   })
 
 const finishFeatureFn = (words, graph) => {
   if (!graph.branches[words[4]]) {
-    throw new Error('Any feature with this name')
+    return graph
   }
   return Object.assign({}, graph, {
-    commits: updateCommitFeatureToDevelop(graph.commits, graph.currentCommit, words[4]),
+    commits: deleteFeatureInCommmits(graph.commits, graph.currentCommit, words[4]),
     branches: deleteFeatureToBranches(graph.branches, graph.currentCommit, words[4]),
     currentBranch: 'develop'
   })

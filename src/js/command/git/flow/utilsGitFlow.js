@@ -1,6 +1,11 @@
 const startFn = words => `${words[2]} ${words[4]} created`
 
-const finishFn = (words, branch) => `${words[2]} ${words[4]} finish | You are now in ${branch}`
+const finishFn = (words, branch, graph) => {
+  if (!graph.branches[words[4]]) {
+    return 'Any feature with this name'
+  }
+  return `${words[2]} ${words[4]} finish | You are now in ${branch}`
+}
 
 const agrumentCommand = {
   start: startFn,
@@ -13,7 +18,7 @@ const utilsGitFlow = {
       return graph.branches[branch].branches[words[2]].toString()
     }
     if (words[3] === 'start' && graph.branches[words[4]]) { throw new Error('This name already exists') } else if (words[3] === 'start' || words[3] === 'finish') {
-      return agrumentCommand[words[3]](words, branch)
+      return agrumentCommand[words[3]](words, branch, graph)
     }
     throw new Error('Bad argument')
   },

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Radium, { StyleRoot } from 'radium'
-import { bounceInDown } from 'react-animations'
+import { zoomIn } from 'react-animations'
 
 
 class Commit extends Component {
@@ -23,9 +23,9 @@ class Commit extends Component {
 
   render() {
     const styles = {
-      bounceInDown: {
-        animation: 'x 2s',
-        animationName: Radium.keyframes(bounceInDown, 'bounceInDown'),
+      zoomIn: {
+        animation: 'x 1s',
+        animationName: Radium.keyframes(zoomIn, 'bounceInDown'),
         margin: 5
       },
       row: {
@@ -37,7 +37,7 @@ class Commit extends Component {
     return (
       <div style={styles.row}>
         <StyleRoot>
-          <div className="circle" style={styles.bounceInDown}>
+          <div className="circle" style={styles.zoomIn}>
             {this.circle(this.state.commit)}
           </div>
         </StyleRoot>

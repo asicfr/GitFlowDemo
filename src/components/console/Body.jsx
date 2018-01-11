@@ -21,9 +21,15 @@ class Body extends Component {
     }
 
     consoleText = () => this.props.console.map((text, i) => {
+      const style = {
+        currentBranch: {
+          float: 'right'
+        }
+      }
+      console.log(this.props.currentBranch)
       const div = <li key={text}><p>{text}</p></li>
       return (
-        <li key={this.props.command[i]}><p className="dollars">$</p><p>{this.props.command[i]}</p> {div}</li>
+        <li key={this.props.command[i]}><p className="dollars">$</p><p>{this.props.command[i]}</p><p style={style.currentBranch}>({this.props.currentBranch})</p> {div}</li>
       )
     })
 

@@ -4,7 +4,7 @@ const gitflow = {
   graph: {
     commits: {
       C0: {
-        parent: [], otherParents: [], childs: [], branches: ['develop', 'master']
+        parent: [], otherParents: [], childs: [], branches: ['master']
       }
     },
     branches: {
@@ -21,12 +21,12 @@ const gitflow = {
 const getCommand = (txt) => {
   const txtOnlyOneSpace = txt.replace(/\s\s+/g, ' ')
   const txtSplit = txtOnlyOneSpace.split(' -')
+  console.log(txtSplit)
+  console.log(txtSplit[0].split(' '))
 
   const command = {
     words: txtSplit[0].split(' '),
-    args: {
-
-    }
+    args: txtSplit[1]
   }
   return command
 }
