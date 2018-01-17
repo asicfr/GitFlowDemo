@@ -8,27 +8,20 @@
 
 }
 
+
 .circle {
-    position: relative;
-    width: 5vh;
-    display: block;
-    margin: 1vh 0;
-    background-color: transparent;
-    color: #222;
-    text-align: center;
-   
-  }
-  
-  .circle:after {
-    display: block;
-    padding-bottom: 100%;
-    width: 100%;
-    height: 0;
-    border-radius: 50%;
-    background-color: #ddd;
-    content: "";
-    border: 0.3vh solid #404040;
-  }
+  position: relative;
+  display: block;
+  width: 5vh;
+  height: 5vh;
+  border-radius: 50%;
+  font-size: 50px;
+  background-color: #ddd;
+  border: 0.3vh solid #404040;
+  margin: 1vh 0;
+  text-align: center;
+  color: #222;
+}
   
   .circle__inner {
     position: absolute;
@@ -47,7 +40,7 @@
   
   .circle__content {
     display: table-cell;
-    padding: 1em;
+    padding: 0.8em;
     vertical-align: middle;
     font-weight: bold;
   }

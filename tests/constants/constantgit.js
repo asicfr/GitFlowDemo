@@ -4,12 +4,43 @@ const constantgit = {
     graph: {
       commits: {
         C0: {
-          parent: [], otherParents: [], childs: [], branches: ['develop', 'master']
+          parent: [], otherParents: [], childs: [], branches: ['master']
         }
       },
       branches: {
-        master: { commit: 'C0', branches: { hotfix: [] } },
-        develop: { commit: 'C0', branches: { feature: [], release: [] } }
+        master: { commit: 'C0' },
+        develop: { commit: 'C0' }
+      },
+      currentBranch: 'develop',
+      currentCommit: 'C0',
+      lastCommit: 'C0'
+    },
+    console: 'Bienvenue sur l\'outil de test GitFlow'
+  },
+
+
+  test: {
+    graph: {
+      commits: {
+        C0: {
+          parent: [], otherParents: [], childs: [], branches: ['master']
+        }
+      },
+      branches: {
+        master: { commit: 'C0' },
+        develop: { commit: 'C0' },
+        'feature/namefeature': {
+          commit: 'C0',
+          isFeature: true
+        },
+        'release/nameRelease': {
+          commit: 'C0',
+          isRelease: true
+        },
+        'hotfix/namehotfix': {
+          commit: 'C0',
+          isHotfix: true
+        }
       },
       currentBranch: 'develop',
       currentCommit: 'C0',
@@ -23,33 +54,33 @@ const constantgit = {
     graph: {
       commits: {
         C0: {
-          parent: [], otherParents: [], childs: [], branches: ['develop', 'master']
+          parent: [], otherParents: [], childs: [], branches: ['master']
         }
       },
       branches: {
-        master: { commit: 'C0', branches: { hotfix: [] } },
-        develop: { commit: 'C0', branches: { feature: [], release: [] } }
+        master: { commit: 'C0' },
+        develop: { commit: 'C0' }
       },
       currentBranch: 'develop',
       currentCommit: 'C0',
       lastCommit: 'C0'
     },
-    console: 'Too many words'
+    console: 'This option is not supported'
   },
 
   commmitOut: {
     graph: {
       commits: {
         C0: {
-          parent: [], otherParents: [], childs: ['C1'], branches: ['develop', 'master']
+          parent: [], otherParents: [], childs: ['C1'], branches: ['master']
         },
         C1: {
           parent: ['C0'], otherParents: [], childs: [], branches: ['develop']
         }
       },
       branches: {
-        master: { commit: 'C0', branches: { hotfix: [] } },
-        develop: { commit: 'C1', branches: { feature: [], release: [] } }
+        master: { commit: 'C0' },
+        develop: { commit: 'C1' }
       },
       currentBranch: 'develop',
       currentCommit: 'C1',
@@ -62,18 +93,18 @@ const constantgit = {
     graph: {
       commits: {
         C0: {
-          parent: [], otherParents: [], childs: ['C1'], branches: ['develop', 'master']
+          parent: [], otherParents: [], childs: [], branches: ['master']
         },
         C1: {
-          parent: ['C0'], otherParents: [], childs: ['C2'], branches: ['develop']
+          parent: [], otherParents: [], childs: [], branches: ['develop']
         },
         C2: {
-          parent: ['C1'], otherParents: [], childs: [], branches: ['develop']
+          parent: [], otherParents: [], childs: [], branches: ['develop']
         }
       },
       branches: {
-        master: { commit: 'C0', branches: { hotfix: [] } },
-        develop: { commit: 'C2', branches: { feature: [], release: [] } }
+        master: { commit: 'C0' },
+        develop: { commit: 'C2' }
       },
       currentBranch: 'develop',
       currentCommit: 'C2',
@@ -86,18 +117,18 @@ const constantgit = {
     graph: {
       commits: {
         C0: {
-          parent: [], otherParents: [], childs: ['C1'], branches: ['develop', 'master']
+          parent: [], otherParents: [], childs: [], branches: ['master']
         },
         C1: {
-          parent: ['C0'], otherParents: [], childs: [], branches: ['develop']
+          parent: [], otherParents: [], childs: [], branches: ['develop']
         }
       },
       branches: {
-        master: { commit: 'C0', branches: { hotfix: [] } },
-        develop: { commit: 'C1', branches: { feature: [], release: [] } }
+        master: { commit: 'C0' },
+        develop: { commit: 'C1' }
       },
       currentBranch: 'develop',
-      currentCommit: 'C1',
+      currentCommit: 'C0',
       lastCommit: 'C1'
     },
     console: ''
@@ -107,15 +138,15 @@ const constantgit = {
     graph: {
       commits: {
         C0: {
-          parent: [], otherParents: [], childs: ['C1'], branches: ['develop', 'master']
+          parent: [], otherParents: [], childs: [], branches: ['master']
         },
         C1: {
-          parent: ['C0'], otherParents: [], childs: [], branches: ['develop']
+          parent: [], otherParents: [], childs: [], branches: ['develop']
         }
       },
       branches: {
-        master: { commit: 'C0', branches: { hotfix: [] } },
-        develop: { commit: 'C1', branches: { feature: [], release: [] } }
+        master: { commit: 'C0' },
+        develop: { commit: 'C1' }
       },
       currentBranch: 'master',
       currentCommit: 'C0',
@@ -128,16 +159,16 @@ const constantgit = {
     graph: {
       commits: {
         C0: {
-          parent: [], otherParents: [], childs: ['C1'], branches: ['develop', 'master']
+          parent: [], otherParents: [], childs: ['C1'], branches: ['master']
         },
         C1: {
           parent: ['C0'], otherParents: [], childs: [], branches: ['develop']
         }
       },
       branches: {
-        master: { commit: 'C0', branches: { hotfix: [] } },
-        develop: { commit: 'C1', branches: { feature: ['yolow'], release: [] } },
-        yolow: { commit: 'C1' }
+        master: { commit: 'C0' },
+        develop: { commit: 'C1' },
+        'feature/yolow': { commit: 'C1' }
       },
       currentBranch: 'develop',
       currentCommit: 'C1',
@@ -149,18 +180,18 @@ const constantgit = {
     graph: {
       commits: {
         C0: {
-          parent: [], otherParents: [], childs: ['C1'], branches: ['develop', 'master']
+          parent: [], otherParents: [], childs: ['C1'], branches: ['master']
         },
         C1: {
           parent: ['C0'], otherParents: [], childs: [], branches: ['develop']
         }
       },
       branches: {
-        master: { commit: 'C0', branches: { hotfix: [] } },
-        develop: { commit: 'C1', branches: { feature: ['yolow'], release: [] } },
-        yolow: { commit: 'C1' }
+        master: { commit: 'C0' },
+        develop: { commit: 'C1' },
+        'feature/yolow': { commit: 'C1' }
       },
-      currentBranch: 'yolow',
+      currentBranch: 'feature/yolow',
       currentCommit: 'C1',
       lastCommit: 'C1'
     },

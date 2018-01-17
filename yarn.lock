@@ -5947,6 +5947,10 @@ react-scrollbar-size@^2.0.2:
     prop-types "^15.5.10"
     react-event-listener "^0.5.0"
 
+react-snake-arrow@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/react-snake-arrow/-/react-snake-arrow-0.0.1.tgz#451c0a8db364b18c8e7819aa6e3af1f8165334d0"
+
 react-transition-group@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-2.2.1.tgz#e9fb677b79e6455fd391b03823afe84849df4a10"

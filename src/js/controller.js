@@ -8,8 +8,8 @@ const gitflow = {
       }
     },
     branches: {
-      master: { commit: 'C0', branches: { hotfix: [] } },
-      develop: { commit: 'C0', branches: { feature: [], release: [] } }
+      master: { commit: 'C0' },
+      develop: { commit: 'C0' }
     },
     currentBranch: 'develop',
     currentCommit: 'C0',
@@ -21,9 +21,6 @@ const gitflow = {
 const getCommand = (txt) => {
   const txtOnlyOneSpace = txt.replace(/\s\s+/g, ' ')
   const txtSplit = txtOnlyOneSpace.split(' -')
-  console.log(txtSplit)
-  console.log(txtSplit[0].split(' '))
-
   const command = {
     words: txtSplit[0].split(' '),
     args: txtSplit[1]

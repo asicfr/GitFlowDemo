@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import Radium, { StyleRoot } from 'radium'
 import { zoomIn } from 'react-animations'
 
-
 class Commit extends Component {
   constructor(props) {
     super(props)
@@ -31,13 +30,34 @@ class Commit extends Component {
       row: {
         display: 'flex',
         justifyContent: 'center'
+      },
+      master: {
+        marginLeft: '20vh',
+        background: '#B3E5FC'
+      },
+      develop: {
+        marginRight: '20vh',
+        background: '#E1BEE7'
+      },
+      feature: {
+        marginRight: '40vh',
+        background: '#C8E6C9'
+      },
+      release: {
+        marginRight: '0vh',
+        background: '#FFF9C4'
+      },
+      hotfix: {
+        marginLeft: '40vh',
+        background: '#ffcdd2'
       }
     }
 
+    const branch = this.state.infoCommit.branches[0].split('/')
     return (
       <div style={styles.row}>
         <StyleRoot>
-          <div className="circle" style={styles.zoomIn}>
+          <div className="circle" style={{ ...styles.zoomIn, ...styles[branch[0]] }}>
             {this.circle(this.state.commit)}
           </div>
         </StyleRoot>
