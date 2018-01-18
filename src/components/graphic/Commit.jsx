@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Radium, { StyleRoot } from 'radium'
 import { zoomIn } from 'react-animations'
+import Badge from 'material-ui/Badge'
 
 class Commit extends Component {
   constructor(props) {
@@ -14,9 +15,11 @@ class Commit extends Component {
 
   circle = commit => (
     <div className="circle__inner">
-      <div className="circle__wrapper">
-        <div className="circle__content">{commit}</div>
-      </div>
+      <Badge badgeContent={4} color="primary">
+        <div className="circle__wrapper">
+          <div className="circle__content">{commit}</div>
+        </div>
+      </Badge>
     </div>)
 
 
