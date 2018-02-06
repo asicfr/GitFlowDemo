@@ -73,7 +73,6 @@ export class Json extends Component {
     return (
 
       <div>
-
         <ExpansionPanel>
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
             <Typography style={styles.title}>JSON du graph</Typography>
@@ -82,7 +81,6 @@ export class Json extends Component {
             <Typography style={styles.text}>{displayJson}</Typography>
           </ExpansionPanelDetails>
         </ExpansionPanel>
-
       </div>
     )
   }

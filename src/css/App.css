@@ -9,7 +9,6 @@
   text-align: center;
   height: 100%;
   clear: none;
-
 }
 
 .App-Console {
@@ -24,7 +23,7 @@
 }
 
 .App-Header {
-  background: rgb(248, 248, 248);
+  background: #24292E;
   width: 100%;
   box-shadow: 0px 1px 3px 0px rgba(136, 136, 136, 0.2), 0px 1px 1px 0px rgba(202, 202, 202, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
   height: 4.3%;
@@ -46,8 +45,8 @@
 }
 
 .App-Header p {
-  font-family: consoleFont;
-  color: black;
+  font-family: 'Roboto', sans-serif;
+  color: rgb(206, 206, 206);
   font-size: 2vh;
   float: left;  
   margin: 0.8vh auto;
@@ -93,9 +92,20 @@
 
 .github {
   text-align: center;
-  background: url("../img/media.png");
   margin-top: 1vh;
+  font-family: 'Roboto', sans-serif;
   font-size: 2vh;
+  
+}
+
+.github a {
+  color: black;
+  text-decoration:none; 
+
+}
+
+.github a:hover {
+  font-weight: bold
 }
 
 .App-Footer {

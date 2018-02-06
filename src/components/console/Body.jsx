@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import '../../css/App.css'
 
+
 class Body extends Component {
   constructor(props) {
     super(props)
@@ -26,10 +27,15 @@ class Body extends Component {
           float: 'right'
         }
       }
-      console.log(this.props.currentBranch)
       const div = <li key={text}><p>{text}</p></li>
+      let currentBranch
+
+      if (i === Object.keys(this.props.console).length - 1) {
+        currentBranch = <p style={style.currentBranch}>({this.props.currentBranch})</p>
+      }
+
       return (
-        <li key={this.props.command[i]}><p className="dollars">$</p><p>{this.props.command[i]}</p><p style={style.currentBranch}>({this.props.currentBranch})</p> {div}</li>
+        <li key={this.props.command[i]}><p className="dollars">$</p><p>{this.props.command[i]}</p>{currentBranch}{div}</li>
       )
     })
 
