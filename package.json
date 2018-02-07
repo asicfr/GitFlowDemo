@@ -1,6 +1,6 @@
 {
   "name": "gitflowdemo",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "private": true,
   "dependencies": {
     "immutable": "3.8.2",
@@ -11,7 +11,9 @@
     "react": "16.2.0",
     "react-animations": "^1.0.0",
     "react-dom": "16.2.0",
-    "react-scripts": "1.0.17"
+    "react-lineto": "^2.0.0",
+    "react-scripts": "1.0.17",
+    "react-snake-arrow": "^0.0.1"
   },
   "scripts": {
     "start": "react-scripts start",

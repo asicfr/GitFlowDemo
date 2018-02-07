@@ -9,11 +9,10 @@
   text-align: center;
   height: 100%;
   clear: none;
-  overflow: hidden;
 }
 
 .App-Console {
-  background: #EFEFEF;
+  background:rgb(248, 248, 248);
   background-size: cover;
   width: 30%;
   height: 92vh;
@@ -24,9 +23,10 @@
 }
 
 .App-Header {
-  background: #EFEFEF;
+  background: #24292E;
   width: 100%;
-  height: 3%;
+  box-shadow: 0px 1px 3px 0px rgba(136, 136, 136, 0.2), 0px 1px 1px 0px rgba(202, 202, 202, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+  height: 4.3%;
   clear: none;
 }
 
@@ -45,8 +45,8 @@
 }
 
 .App-Header p {
-  font-family: consoleFont;
-  color: black;
+  font-family: 'Roboto', sans-serif;
+  color: rgb(206, 206, 206);
   font-size: 2vh;
   float: left;  
   margin: 0.8vh auto;
@@ -62,7 +62,7 @@
   font-family: consoleFont;
   width: 100%;
   height: 90%;
-  background: #EFEFEF;
+  background: rgb(248, 248, 248);
   overflow: hidden;
 }
 
@@ -92,15 +92,26 @@
 
 .github {
   text-align: center;
-  background: url("../img/media.png");
   margin-top: 1vh;
+  font-family: 'Roboto', sans-serif;
   font-size: 2vh;
+  
+}
+
+.github a {
+  color: black;
+  text-decoration:none; 
+
+}
+
+.github a:hover {
+  font-weight: bold
 }
 
 .App-Footer {
   width: 100%;
   height: 5%;
-  background: #EFEFEF;
+  background: rgb(248, 248, 248);
   overflow: auto;
   clear: none;
   font-family: consoleFont;
@@ -130,7 +141,7 @@
   float: left;
   height: 85%;
   font-size: 1.8vh;
-  background: #EFEFEF;
+  background: rgb(248, 248, 248);
   margin: 0 auto;
   margin-left: 1vh;
   overflow: hidden;

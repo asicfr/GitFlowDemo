@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
 import '../../css/Flow.css'
 import CommitUi from './Commit'
 import JsonUi from './Json'
+
 
 class Vue extends Component {
   constructor(props) {
@@ -19,7 +21,13 @@ class Vue extends Component {
 
   graphFn() {
     return Object.keys(this.state.graph.commits).map((commit, i) => (
-      <CommitUi key={i} nameCommit={commit} others={this.state.graph.commits[commit]} />
+      <CommitUi
+        key={commit}
+        nameCommit={commit}
+        ref={(el) => { this[commit] = el }}
+        branches={this.state.graph.branches}
+        infoCommit={this.state.graph.commits[commit]}
+      />
     ))
   }
 

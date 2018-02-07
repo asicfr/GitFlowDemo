@@ -21,8 +21,15 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <ConsoleUi onConsole={this.handleConsole} console={this.state.gitflow.console} />
-        <VueUi txt={this.state.gitflow.console} graph={this.state.gitflow.graph} />
+        <ConsoleUi
+          currentBranch={this.state.gitflow.graph.currentBranch}
+          onConsole={this.handleConsole}
+          console={this.state.gitflow.console}
+        />
+        <VueUi
+          txt={this.state.gitflow.console}
+          graph={this.state.gitflow.graph}
+        />
       </div>
     )
   }

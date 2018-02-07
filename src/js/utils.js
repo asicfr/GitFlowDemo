@@ -6,7 +6,8 @@ const utils = {
     [...arr.slice(0, start), ...items, ...arr.slice(start + deleteCount)],
   checkFunction: (c, t) => {
     if (typeof c[t] !== 'function') { throw new Error('Invalid Command') }
-  }
+  },
+  createKeyCommit: lastCommit => `C${parseInt(lastCommit.split(/(\d+)/)[1], 10) + 1}`
 }
 
 export default utils

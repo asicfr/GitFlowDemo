@@ -61,22 +61,26 @@ export class Json extends Component {
     const displayJson = this.displayJson()
 
     const styles = {
-      textAlign: 'center',
-      margin: '0 auto'
+      title: {
+        fontSize: '2vh'
+      },
+      text: {
+        textAlign: 'center',
+        margin: '0 auto',
+        fontSize: '2vh'
+      }
     }
     return (
 
       <div>
-
         <ExpansionPanel>
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <Typography>JSON du graph</Typography>
+            <Typography style={styles.title}>JSON du graph</Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
-            <Typography style={styles}>{displayJson}</Typography>
+            <Typography style={styles.text}>{displayJson}</Typography>
           </ExpansionPanelDetails>
         </ExpansionPanel>
-
       </div>
     )
   }

@@ -5889,6 +5889,13 @@ react-jss@^8.1.0:
     prop-types "^15.6.0"
     theming "^1.3.0"
 
+react-lineto@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/react-lineto/-/react-lineto-2.0.0.tgz#fa4c26a7b4390ff79ef6471950dc22f1636fcb11"
+  dependencies:
+    react "16.2.0"
+    react-dom "16.2.0"
+
 react-popper@^0.7.4:
   version "0.7.5"
   resolved "https://registry.yarnpkg.com/react-popper/-/react-popper-0.7.5.tgz#71c25946f291db381231281f6b95729e8b801596"
@@ -5946,6 +5953,10 @@ react-scrollbar-size@^2.0.2:
     babel-runtime "^6.23.0"
     prop-types "^15.5.10"
     react-event-listener "^0.5.0"
+
+react-snake-arrow@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/react-snake-arrow/-/react-snake-arrow-0.0.1.tgz#451c0a8db364b18c8e7819aa6e3af1f8165334d0"
 
 react-transition-group@^2.2.1:
   version "2.2.1"

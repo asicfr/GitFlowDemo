@@ -4,15 +4,15 @@ const constantfeature = {
     graph: {
       commits: {
         C0: {
-          parent: [], otherParents: [], childs: ['C1'], branches: ['develop', 'master']
+          parent: [], otherParents: [], childs: ['C1'], branches: ['master']
         },
         C1: {
           parent: ['C0'], otherParents: [], childs: [], branches: ['develop']
         }
       },
       branches: {
-        master: { commit: 'C0', branches: { hotfix: [] } },
-        develop: { commit: 'C1', branches: { feature: [], release: [] } }
+        master: { commit: 'C0' },
+        develop: { commit: 'C1' }
       },
       currentBranch: 'develop',
       currentCommit: 'C1',
@@ -26,43 +26,43 @@ const constantfeature = {
     graph: {
       commits: {
         C0: {
-          parent: [], otherParents: [], childs: ['C1'], branches: ['develop', 'master']
+          parent: [], otherParents: [], childs: ['C1'], branches: ['master']
         },
         C1: {
           parent: ['C0'], otherParents: [], childs: [], branches: ['develop']
         }
       },
       branches: {
-        master: { commit: 'C0', branches: { hotfix: [] } },
-        develop: { commit: 'C1', branches: { feature: ['yolow'], release: [] } },
-        yolow: { commit: 'C1' }
+        master: { commit: 'C0' },
+        develop: { commit: 'C1' },
+        'feature/yolow': { commit: 'C1' }
       },
-      currentBranch: 'yolow',
+      currentBranch: 'feature/yolow',
       currentCommit: 'C1',
       lastCommit: 'C1'
     },
-    console: 'feature yolow created'
+    console: 'feature/yolow created'
   },
 
   featureFinishIn: {
     graph: {
       commits: {
         C0: {
-          parent: [], otherParents: [], childs: ['C1'], branches: ['develop', 'master']
+          parent: [], otherParents: [], childs: ['C1'], branches: ['master']
         },
         C1: {
           parent: ['C0'], otherParents: [], childs: ['C2'], branches: ['develop']
         },
         C2: {
-          parent: ['C1'], otherParents: [], childs: [], branches: ['yolow']
+          parent: ['C1'], otherParents: [], childs: [], branches: ['feature/yolow']
         }
       },
       branches: {
-        master: { commit: 'C0', branches: { hotfix: [] } },
-        develop: { commit: 'C1', branches: { feature: ['yolow'], release: [] } },
-        yolow: { commit: 'C2' }
+        master: { commit: 'C0' },
+        develop: { commit: 'C1' },
+        'feature/yolow': { commit: 'C2' }
       },
-      currentBranch: 'yolow',
+      currentBranch: 'feature/yolow',
       currentCommit: 'C2',
       lastCommit: 'C2'
     },
@@ -73,42 +73,45 @@ const constantfeature = {
     graph: {
       commits: {
         C0: {
-          parent: [], otherParents: [], childs: ['C1'], branches: ['develop', 'master']
+          parent: [], otherParents: [], childs: ['C1'], branches: ['master']
         },
         C1: {
-          parent: ['C0'], otherParents: [], childs: ['C2'], branches: ['develop']
+          parent: ['C0'], otherParents: [], childs: ['C2', 'C3'], branches: ['develop']
         },
         C2: {
-          parent: ['C1'], otherParents: [], childs: [], branches: ['develop']
+          parent: ['C1'], otherParents: [], childs: ['C3'], branches: ['feature/yolow']
+        },
+        C3: {
+          parent: ['C1'], otherParents: ['C2'], childs: [], branches: ['develop']
         }
       },
       branches: {
-        master: { commit: 'C0', branches: { hotfix: [] } },
-        develop: { commit: 'C2', branches: { feature: [], release: [] } }
+        master: { commit: 'C0' },
+        develop: { commit: 'C3' }
       },
       currentBranch: 'develop',
-      currentCommit: 'C2',
-      lastCommit: 'C2'
+      currentCommit: 'C3',
+      lastCommit: 'C3'
     },
-    console: 'feature yolow finish | You are now in develop'
+    console: 'feature/yolow is close'
   },
 
   featureCommitIn: {
     graph: {
       commits: {
         C0: {
-          parent: [], otherParents: [], childs: ['C1'], branches: ['develop', 'master']
+          parent: [], otherParents: [], childs: ['C1'], branches: ['master']
         },
         C1: {
           parent: ['C0'], otherParents: [], childs: [], branches: ['develop']
         }
       },
       branches: {
-        master: { commit: 'C0', branches: { hotfix: [] } },
-        develop: { commit: 'C1', branches: { feature: ['yolow'], release: [] } },
-        yolow: { commit: 'C1' }
+        master: { commit: 'C0' },
+        develop: { commit: 'C1' },
+        'feature/yolow': { commit: 'C1' }
       },
-      currentBranch: 'yolow',
+      currentBranch: 'feature/yolow',
       currentCommit: 'C1',
       lastCommit: 'C1'
     },
@@ -119,21 +122,21 @@ const constantfeature = {
     graph: {
       commits: {
         C0: {
-          parent: [], otherParents: [], childs: ['C1'], branches: ['develop', 'master']
+          parent: [], otherParents: [], childs: ['C1'], branches: ['master']
         },
         C1: {
           parent: ['C0'], otherParents: [], childs: ['C2'], branches: ['develop']
         },
         C2: {
-          parent: ['C1'], otherParents: [], childs: [], branches: ['yolow']
+          parent: ['C1'], otherParents: [], childs: [], branches: ['feature/yolow']
         }
       },
       branches: {
-        master: { commit: 'C0', branches: { hotfix: [] } },
-        develop: { commit: 'C1', branches: { feature: ['yolow'], release: [] } },
-        yolow: { commit: 'C2' }
+        master: { commit: 'C0' },
+        develop: { commit: 'C1' },
+        'feature/yolow': { commit: 'C2' }
       },
-      currentBranch: 'yolow',
+      currentBranch: 'feature/yolow',
       currentCommit: 'C2',
       lastCommit: 'C2'
     },
