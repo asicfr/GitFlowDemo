@@ -25,3 +25,7 @@ test('git flow list', () => {
   expect(controller.dataControl('git flow feature', constant.checkoutGitFlowIn)).toEqual(constant.checkoutGitFlowOut)
 })
 
+test('git merge', () => {
+  expect(controller.dataControl('git merge develop', constant.checkoutGitFlowIn)).toEqual(constant.checkoutGitFlowOut)
+})
+

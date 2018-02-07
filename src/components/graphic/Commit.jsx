@@ -28,14 +28,13 @@ class Commit extends Component {
       </div>
     </div>)
 
-  badge = branches => Object.keys(branches).map((branch, i) => {
+  badge = branches => Object.keys(branches).map((branch) => {
     if (branches[branch].commit === this.state.commit) {
       return (
-        <div key={i} className="badge" >{branch}</div>
+        <div key={branch} className="badge" >{branch}</div>
       )
     }
   })
-
 
   render() {
     const styles = {
