@@ -2,12 +2,14 @@ import flow from './git/flow'
 import commit from './git/commit'
 import checkout from './git/checkout'
 import branch from './git/branch'
+import merge from './git/merge'
 
 const functions = {
   flow,
   commit,
   checkout,
-  branch
+  branch,
+  merge
 }
 
 const git = (command, gitflow) => {
