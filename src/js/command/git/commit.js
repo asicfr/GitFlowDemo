@@ -10,7 +10,6 @@ const updateTreeGraph = (commits, keyNewCommit, ValueNewCommit, currentCommit) =
   [keyNewCommit]: ValueNewCommit
 })
 
-
 const updateCommitOnBranch = (currentbranch, keyNewCommit) => Object.assign({}, currentbranch, {
   commit: keyNewCommit
 })
