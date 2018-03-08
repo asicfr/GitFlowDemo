@@ -14,6 +14,7 @@ class App extends Component {
   }
   handleConsole = (command) => {
     const dataflow = controller.dataControl(command, this.state.gitflow, this.state.grid)
+    console.log(dataflow.gitFlowObject)
     this.setState({
       gitflow: dataflow.gitFlowObject,
       grid: dataflow.gridGit

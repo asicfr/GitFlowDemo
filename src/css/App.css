@@ -139,11 +139,11 @@
   width: 90%;
   border: none;
   float: left;
-  height: 85%;
+  height: 88%;
   font-size: 1.8vh;
   background: rgb(248, 248, 248);
   margin: 0 auto;
-  margin-left: 1vh;
+  margin-left: .5vh;
   overflow: hidden;
 }
 

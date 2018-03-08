@@ -4,12 +4,16 @@ const addChildToParent = (child, parent) => Object.assign({}, parent, {
   childs: utils.immutablePush(parent.childs, child)
 })
 
-const createCommit = (commits, newCommit, valueCommit, currentCommit, otherParentCommit) =>
-  Object.assign({}, commits, {
+const createCommit = (commits, newCommit, valueCommit, currentCommit, otherParentCommit) => {
+  if(commits[currentCommit].parent[0] === otherParentCommit || commits[currentCommit].otherParents[0] === otherParentCommit)
+    throw new Error('Branch already up to date')
+
+  return Object.assign({}, commits, {
     [currentCommit]: addChildToParent(newCommit, commits[currentCommit]),
     [newCommit]: valueCommit,
     [otherParentCommit]: addChildToParent(newCommit, commits[otherParentCommit])
   })
+}
 
 const updateCommitOnBranch = (currentbranch, keyNewCommit) => Object.assign({}, currentbranch, {
   commit: keyNewCommit
