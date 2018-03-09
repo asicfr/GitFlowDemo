@@ -42,7 +42,15 @@
 .imgGit {
   margin: 0.6vh auto;
   margin-left: 1vh; 
+  
 }
+
+.imgGit:hover {
+  transition: 200ms;
+  animation:spin 4s linear infinite;
+}
+
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); }}
 
 .App-Header p {
   font-family: 'Roboto', sans-serif;
@@ -55,6 +63,13 @@
   -moz-user-select: none;     /* Firefox all */
   -ms-user-select: none;      /* IE 10+ */
   user-select: none;  
+}
+
+.App-Header p:hover {
+  transition: 200ms;
+  color: white;
+  font-size: 2.01vh;
+  
 }
 
 .App-Body {
