@@ -69,7 +69,6 @@
   transition: 200ms;
   color: white;
   font-size: 2.01vh;
-  
 }
 
 .App-Body {
@@ -110,13 +109,11 @@
   margin-top: 1vh;
   font-family: 'Roboto', sans-serif;
   font-size: 2vh;
-  
 }
 
 .github a {
   color: black;
   text-decoration:none; 
-
 }
 
 .github a:hover {
@@ -199,7 +196,6 @@
   .App-Graph {
     width: 55%;
   }
- 
 }
 
 @media screen and (max-width: 1024px) {
