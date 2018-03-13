@@ -20,6 +20,7 @@ const gitflow = {
 }
 
 const gridInit = {
+
   branches: ['develop', 'master'],
   columns: [
     [
