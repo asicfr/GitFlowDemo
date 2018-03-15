@@ -71,54 +71,74 @@ const addCell = (grid, numCommit, commit, x, y) => {
     }
   }
 
-  const newGrid = linkToParent(grid, cell.commit, links)
-  newGrid[x][y] = cell
+  grid[x][y] = cell
   return grid
 }
 
-const addColumn = oldGrid => utils.immutableSplice(oldGrid, [])
+const addColumn = (oldGrid, index, deletecount, nameBranch) => utils.immutableSplice(oldGrid, index, deletecount, nameBranch)
 
 const addRow = (column, row) => utils.immutablePush(column, row)
 
+const countCommits = grid => grid.reduce((a, b) => a + b.filter(objet => objet.commit !== undefined).length, 0)
+
 const editRows = (grid, gitFlow, oldGitFlow, arrayBranches) => {
   if (checkCountRows(gitFlow, oldGitFlow)) {
-    const commit = gitFlow.graph.commits[Object.keys(gitFlow.graph.commits).pop()]
-    const numCommit = Object.keys(gitFlow.graph.commits).pop()
-    const x = findX(arrayBranches, commit.branches[0])
-    const y = findY(grid, gitFlow, commit)
-    const newGrid = addCell(grid, numCommit, commit, x, y)
-    return newGrid
+    const count = Object.keys(gitFlow.graph.commits).length - countCommits(grid)
+    for (let i = 1; i < count + 1; i++) {
+      const commit = gitFlow.graph.commits[Object.keys(gitFlow.graph.commits)[Object.keys(gitFlow.graph.commits).length - i]]
+      const numCommit = Object.keys(gitFlow.graph.commits)[Object.keys(gitFlow.graph.commits).length - i]
+      const x = findX(arrayBranches, commit.branches[0])
+      const y = findY(grid, gitFlow, commit)
+      grid = addCell(grid, numCommit, commit, x, y)
+    }
+    return grid
   }
   return grid
 }
 
-const editColumns = (oldGrid, gitFlow, oldGitFlow, arrayBranches) => {
+const editColumns = (oldGrid, gitFlow, oldGitFlow, arrayBranches, indexNewBranch) => {
   if (arrayBranches.length > oldGrid.length) {
-    const newGrid = addColumn(oldGrid)
+    const newGrid = addColumn(oldGrid, indexNewBranch, 0, [])
     return newGrid
   }
   return oldGrid
 }
 
-const editGrid = (oldGrid, gitFlow, oldGitFlow, arrayBranches) => {
-  const gridColumns = editColumns(oldGrid, gitFlow, oldGitFlow, arrayBranches)
+const editGrid = (oldGrid, gitFlow, oldGitFlow, arrayBranches, indexNewBranch) => {
+  const gridColumns = editColumns(oldGrid, gitFlow, oldGitFlow, arrayBranches, indexNewBranch)
   const finalGrid = editRows(gridColumns, gitFlow, oldGitFlow, arrayBranches)
   return finalGrid
 }
 
 const editBranches = (gridBranches, gitFlow, oldGitFlow) => {
   if (checkBranches(gitFlow, oldGitFlow)) {
-    const nameBranch = Object.keys(gitFlow.branches).pop()
+    let array = []
+    const nameBranch = Object.keys(gitFlow.graph.branches).pop()
+    if (nameBranch.includes('feature')) { array = utils.immutableUnshift(gridBranches, nameBranch) }
+    if (nameBranch.includes('release')) {
+      const master = gridBranches.indexOf('master')
+      array = utils.immutableSplice(gridBranches, master, 0, nameBranch)
+    }
+    if (nameBranch.includes('hotfix')) { array = utils.immutablePush(gridBranches, nameBranch) }
+    const index = array.indexOf(nameBranch)
+    return {
+      array,
+      index
+    }
   }
-  return gridBranches
+
+  return {
+    array: gridBranches,
+    index: 0
+  }
 }
 
 const grid = (oldGrid, gitFlow, oldGitFlow) => {
   if (JSON.stringify(gitFlow) === JSON.stringify(oldGitFlow)) { return oldGrid }
   const arrayBranches = editBranches(oldGrid.branches, gitFlow, oldGitFlow)
   return Object.assign({}, oldGrid, {
-    branches: arrayBranches,
-    columns: editGrid(oldGrid.columns, gitFlow, oldGitFlow, arrayBranches)
+    branches: arrayBranches.array,
+    columns: editGrid(oldGrid.columns, gitFlow, oldGitFlow, arrayBranches.array, arrayBranches.index)
   })
 }
 

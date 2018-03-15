@@ -18,7 +18,8 @@ const start = (gitflow, nameFlow, action, nameBranch, branchDependance) => {
         nameBranch,
         branchDependance
       ),
-      currentBranch: nameBranch
+      currentBranch: nameBranch,
+      currentCommit: gitflow.graph.branches[branchDependance].commit
     }),
     console: `${nameBranch} created`
   })

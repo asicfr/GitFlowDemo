@@ -22,6 +22,33 @@ const constantgrid = {
       ]
     ]
   },
+  gridInFeature: {
+    branches: ['develop', 'master'],
+    columns: [
+      [
+        {},
+        { commit: 'C1', links: ['C0'], branch: 'develop' }
+      ],
+      [
+        { commit: 'C0', links: ['C1'], branch: 'master' }
+      ]
+    ]
+  },
+  gridOutFeature: {
+    branches: ['feature/yolow', 'develop', 'master'],
+    columns: [
+      [
+
+      ],
+      [
+        {},
+        { commit: 'C1', links: ['C0'], branch: 'develop' }
+      ],
+      [
+        { commit: 'C0', links: ['C1'], branch: 'master' }
+      ]
+    ]
+  },
   gridExample: {
     branches: ['develop', 'master'],
     columns: [
