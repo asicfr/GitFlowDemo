@@ -9,7 +9,6 @@
   text-align: center;
   height: 100%;
   clear: none;
-
 }
 
 .App-Console {
@@ -19,14 +18,14 @@
   height: 92vh;
   float: left;
   margin: 3vh;
-  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+  box-shadow: -1px 3px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 3px 0px rgba(0, 0, 0, 0.14), 3px 2px 3px 1px rgba(0, 0, 0, 0.12);
   z-index : 1;
 }
 
 .App-Header {
-  background: rgb(248, 248, 248);
+  background: #24292E;
   width: 100%;
-  box-shadow: 0px 1px 3px 0px rgba(136, 136, 136, 0.2), 0px 1px 1px 0px rgba(202, 202, 202, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+  box-shadow: -1px 3px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 2px 0px rgba(0, 0, 0, 0.14), 3px 2px 1px -1px rgba(0, 0, 0, 0.12);
   height: 4.3%;
   clear: none;
 }
@@ -43,11 +42,19 @@
 .imgGit {
   margin: 0.6vh auto;
   margin-left: 1vh; 
+  
 }
 
+.imgGit:hover {
+  transition: 200ms;
+  animation:spin 4s linear infinite;
+}
+
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); }}
+
 .App-Header p {
-  font-family: consoleFont;
-  color: black;
+  font-family: 'Roboto', sans-serif;
+  color: rgb(206, 206, 206);
   font-size: 2vh;
   float: left;  
   margin: 0.8vh auto;
@@ -56,6 +63,12 @@
   -moz-user-select: none;     /* Firefox all */
   -ms-user-select: none;      /* IE 10+ */
   user-select: none;  
+}
+
+.App-Header p:hover {
+  transition: 200ms;
+  color: white;
+  font-size: 2.01vh;
 }
 
 .App-Body {
@@ -93,9 +106,18 @@
 
 .github {
   text-align: center;
-  background: url("../img/media.png");
   margin-top: 1vh;
+  font-family: 'Roboto', sans-serif;
   font-size: 2vh;
+}
+
+.github a {
+  color: black;
+  text-decoration:none; 
+}
+
+.github a:hover {
+  font-weight: bold
 }
 
 .App-Footer {
@@ -129,11 +151,11 @@
   width: 90%;
   border: none;
   float: left;
-  height: 85%;
+  height: 88%;
   font-size: 1.8vh;
   background: rgb(248, 248, 248);
   margin: 0 auto;
-  margin-left: 1vh;
+  margin-left: .5vh;
   overflow: hidden;
 }
 
@@ -174,7 +196,6 @@
   .App-Graph {
     width: 55%;
   }
- 
 }
 
 @media screen and (max-width: 1024px) {

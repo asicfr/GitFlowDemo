@@ -1,12 +1,13 @@
 import utils from '../../utils'
 
-const updateTreeGraph = (commits, keyNewCommit, ValueNewCommit, currentCommit) => Object.assign({}, commits, {
-  [currentCommit]: addChildToParent(keyNewCommit, commits[currentCommit]),
-  [keyNewCommit]: ValueNewCommit
-})
 
 const addChildToParent = (child, parent) => Object.assign({}, parent, {
   childs: utils.immutablePush(parent.childs, child)
+})
+
+const updateTreeGraph = (commits, keyNewCommit, ValueNewCommit, currentCommit) => Object.assign({}, commits, {
+  [currentCommit]: addChildToParent(keyNewCommit, commits[currentCommit]),
+  [keyNewCommit]: ValueNewCommit
 })
 
 const updateCommitOnBranch = (currentbranch, keyNewCommit) => Object.assign({}, currentbranch, {

@@ -10,10 +10,13 @@ const commandCheckout = (words, graph) => {
   })
 }
 
-const consoleResponse = (command) => {
-  if (command.args) {
+const consoleResponse = (command, graph) => {
+  if (command.args)
     return 'this simulation don\'t use args of checkout, please use git flow functions'
-  }
+  
+  if (!graph.branches[command.words[2]])
+    return 'No branch with this name'
+
   return `You are now in ${command.words[2]}`
 }
 
@@ -21,7 +24,7 @@ const checkout = (command, gitflow) => {
   const { words } = command
   return Object.assign({}, gitflow, {
     graph: commandCheckout(words, gitflow.graph),
-    console: consoleResponse(command)
+    console: consoleResponse(command, gitflow.graph)
   })
 }
 

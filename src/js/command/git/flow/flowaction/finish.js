@@ -80,7 +80,7 @@ const finishFlow = (gitflow, nameFlow, action, nameBranch, branchDependance) => 
       currentCommit: keyCommitDevelop,
       lastCommit
     }),
-    console: `${nameBranch} is close`
+    console: `${nameBranch} is closed`
   })
 }
 

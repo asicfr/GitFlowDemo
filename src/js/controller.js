@@ -1,4 +1,5 @@
 import analyzeCommand from './command'
+import grid from './grid'
 
 const gitflow = {
   graph: {
@@ -18,6 +19,19 @@ const gitflow = {
   console: 'Bienvenue sur l\'outil de test GitFlow'
 }
 
+const gridInit = {
+
+  branches: ['develop', 'master'],
+  columns: [
+    [
+
+    ],
+    [
+      { commit: 'C0', links: [], branch: 'master' }
+    ]
+  ]
+}
+
 const getCommand = (txt) => {
   const txtOnlyOneSpace = txt.replace(/\s\s+/g, ' ')
   const txtSplit = txtOnlyOneSpace.split(' -')
@@ -29,18 +43,29 @@ const getCommand = (txt) => {
 }
 
 const controller = {
-  dataControl: (text, gitflowUpdate) => {
+  dataControl: (text, gitflowUpdate, gridGit) => {
     const command = getCommand(text)
     try {
-      return analyzeCommand(command, gitflowUpdate)
+      const gitFlowObject = analyzeCommand(command, gitflowUpdate)
+      const newGrid = grid(gridGit, gitFlowObject, gitflowUpdate)
+      return {
+        gitFlowObject,
+        gridGit: newGrid
+      }
     } catch (error) {
-      return Object.assign({}, gitflowUpdate, {
-        console: error.message
-      })
+      return {
+        gitFlowObject: Object.assign({}, gitflowUpdate, {
+          console: error.message
+        }),
+        gridGit
+      }
     }
   },
 
-  init: () => gitflow
+  init: () => ({
+    gitflow,
+    gridInit
+  })
 }
 
 export default controller

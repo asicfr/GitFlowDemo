@@ -1,8 +1,9 @@
 {
   "name": "gitflowdemo",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "private": true,
   "dependencies": {
+    "d3": "3.5.17",
     "immutable": "3.8.2",
     "material-ui": "^1.0.0-beta.27",
     "material-ui-icons": "1.0.0-beta.17",
@@ -11,6 +12,7 @@
     "react": "16.2.0",
     "react-animations": "^1.0.0",
     "react-dom": "16.2.0",
+    "react-lineto": "^2.0.0",
     "react-scripts": "1.0.17",
     "react-snake-arrow": "^0.0.1"
   },
