@@ -9,12 +9,16 @@ class Console extends Component {
     super(props)
     this.state = {
       arrayText: [],
-      historyCommand: []
+      historyCommand: [],
+      currentBranch: this.props.currentBranch
     }
   }
 
   componentWillReceiveProps(newProps) {
     this.state.arrayText.push(newProps.console)
+    this.setState({
+      currentBranch: newProps.currentBranch
+    })
   }
 
     handleConsole = (textValue) => {
@@ -26,7 +30,11 @@ class Console extends Component {
       return (
         <div className="App-Console">
           <HeadersUi />
-          <Body command={this.state.historyCommand} console={this.state.arrayText} />
+          <Body
+            currentBranch={this.state.currentBranch}
+            command={this.state.historyCommand}
+            console={this.state.arrayText}
+          />
           <Input data={this.state.historyCommand} onInput={this.handleConsole} />
           <div className="github"> <a rel="stylesheet" href="https://github.com/asicfr/GitFlowDemo">GitHub repository</a></div>
         </div>
