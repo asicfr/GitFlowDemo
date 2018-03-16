@@ -15,6 +15,7 @@ const functions = {
 const git = (command, gitflow) => {
   const { words } = command
   const fn = functions[words[1]]
+  if (words[0] === 'Coucou') { throw new Error('Coucou') }
   if (!fn) {
     throw new Error('Invalid git command')
   }

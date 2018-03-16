@@ -48,6 +48,7 @@ const controller = {
     try {
       const gitFlowObject = analyzeCommand(command, gitflowUpdate)
       const newGrid = grid(gridGit, gitFlowObject, gitflowUpdate)
+      console.log(newGrid)
       return {
         gitFlowObject,
         gridGit: newGrid
