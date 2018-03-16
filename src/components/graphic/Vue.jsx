@@ -11,13 +11,15 @@ class Vue extends Component {
       gBranches: null,
       gGrid: null,
       gPaths: null,
+      width: 0,
       colorCommit: {
         develop: '#B18BE8',
         master: '#B3E3FF',
         feature: '#4ED1A1',
         release: '#4CD3D6',
         hotfix: '#FC8363'
-      }
+      },
+      scale: 1
     }
   }
 
@@ -32,20 +34,24 @@ class Vue extends Component {
     this.setState({
       grid: newProps.grid
     })
-
     const height = this.state.grid.columns.reduce((a, b) => {
       if (a < b.length) { return b.length }
       return a
     }, 0)
-    this.updateGrid(height)
-    this.updateBranches(this.state.context)
-    this.addPath(height)
+
+    console.log(0.1 * height * this.state.scale)
+    this.updateGrid(height, newProps.grid)
+    this.addPath(height, newProps.grid)
+    this.updateBranches(newProps.grid)
+    this.zoomed(this.state.gGrid, newProps.grid)
+    this.zoomed(this.state.gBranches, newProps.grid)
+    this.zoomed(this.state.gPaths, newProps.grid)
   }
 
   setContext() {
     const context = d3.select(this.refs.grid).append('svg')
-      .attr('width', 800)
-      .attr('height', 700)
+      .attr('width', '103%')
+      .attr('height', '95%')
 
     this.setState({
       context
@@ -62,22 +68,23 @@ class Vue extends Component {
       .enter()
 
     branches.append('rect')
-      .attr('x', (d, i) => ((i * 800 / this.state.grid.branches.length) + 150 - this.state.grid.branches.length * 25))
-      .attr('y', 0)
+      .attr('x', (d, i) => ((i * (this.refs.grid.offsetWidth * (1 + (this.state.grid.branches.length * 5 / 100 * (this.state.grid.branches.length * 4 / 25)))) / this.state.grid.branches.length) + (270 + this.state.grid.branches.length * (1 + this.state.scale)) - (this.state.grid.branches.length * 25)))
+      .attr('y', 1)
       .attr('width', 100)
       .attr('height', 30)
       .style('fill', (d => this.state.colorCommit[d]))
-      .style('stroke-width', '2')
+      .style('stroke-width', '1')
       .style('stroke', '#000')
 
 
     branches.append('text')
       .text((d, i) => this.state.grid.branches[i])
-      .attr('x', (d, i) => ((i * 800 / this.state.grid.branches.length) + 200 - this.state.grid.branches.length * 25))
+      .attr('x', (d, i) => ((i * (this.refs.grid.offsetWidth * (1 + (this.state.grid.branches.length * 5 / 100 * (this.state.grid.branches.length * 4 / 25)))) / this.state.grid.branches.length) + (320 + this.state.grid.branches.length * (1 + this.state.scale)) - (this.state.grid.branches.length * 25)))
       .attr('y', 20)
       .style('font-size', '15px')
       .style('text-anchor', 'middle')
 
+    this.zoomed(gBranches, this.state.grid)
 
     this.setState({
       gBranches
@@ -108,6 +115,8 @@ class Vue extends Component {
 
     path.exit().remove()
 
+    this.zoomed(gPaths, this.state.grid)
+
     this.setState({
       gPaths
     })
@@ -130,12 +139,16 @@ class Vue extends Component {
       .style('fill-opacity', (d) => { if (!d.commit) { return 0 } })
       .style('fill', d => this.state.colorCommit[d.branch])
       .attr('r', () => 18)
-      .style('stroke-width', '2')
+      .style('stroke-width', '1')
       .style('stroke', (d) => { if (d.commit) { return '#000' } })
+      .style('opacity', '0')
 
       // Update
     circle
-      .attr('cx', (d, i, j) => ((j * 800 / this.state.grid.branches.length) + 200 - this.state.grid.branches.length * 25))
+      .transition()
+      .duration(1000)
+      .style('opacity', '1')
+      .attr('cx', (d, i, j) => ((j * (this.refs.grid.offsetWidth * (1 + (this.state.grid.branches.length * 5 / 100 * (this.state.grid.branches.length * 4 / 25)))) / this.state.grid.branches.length) + (320 + this.state.grid.branches.length * (1 + this.state.scale)) - (this.state.grid.branches.length * 25)))
       .attr('cy', (d, i) => (i * 60) + 80)
 
       // Exit
@@ -151,12 +164,13 @@ class Vue extends Component {
 
       // Update
     text
-      .attr('x', (d, i, j) => ((j * 800 / this.state.grid.branches.length) + 200 - this.state.grid.branches.length * 25))
+      .attr('x', (d, i, j) => ((j * (this.refs.grid.offsetWidth * (1 + (this.state.grid.branches.length * 5 / 100 * (this.state.grid.branches.length * 4 / 25)))) / this.state.grid.branches.length) + (320 + this.state.grid.branches.length * (1 + this.state.scale)) - (this.state.grid.branches.length * 25)))
       .attr('y', (d, i) => (i * 60) + 85)
 
       // Exit
     text.exit().remove()
 
+    this.zoomed(gGrid, this.state.grid)
 
     this.setState({
       gGrid
@@ -164,12 +178,12 @@ class Vue extends Component {
   }
 
 
-  getCoordonateParent(d, i, j, heightGrid) {
+  getCoordonateParent(d, i, j, heightGrid, newGrid) {
     if (Object.keys(d).length === 0) { return 0 }
 
     let coordonate = ''
     d.links.map((parent, indexParent) => {
-      const index = this.state.grid.columns.map((columns, indexColumns) => {
+      const index = newGrid.columns.map((columns, indexColumns) => {
         const indexRows = columns.findIndex(rows => rows.commit === parent)
         return {
           indexRows,
@@ -178,31 +192,44 @@ class Vue extends Component {
       }).filter(val => val.indexRows !== -1)
 
       if (indexParent === 0) {
-        coordonate += `M ${(index[0].indexColumns * 800 / this.state.grid.branches.length) + 200 - this.state.grid.branches.length * 25} ${index[0].indexRows * 60 / (0.1 * heightGrid) + 85} `
-        coordonate += `L ${(j * 800 / this.state.grid.branches.length) + 200 - this.state.grid.branches.length * 25} ${i * 60 / (0.1 * heightGrid) + 85} `
+        coordonate += `M ${(index[0].indexColumns * (this.refs.grid.offsetWidth * (1 + (newGrid.branches.length * 5 / 100 * (newGrid.branches.length * 4 / 25)))) / newGrid.branches.length) + (320 + newGrid.branches.length * (1 + this.state.scale)) - (newGrid.branches.length * 25)} ${index[0].indexRows * 60 / (0.1 * heightGrid * this.state.scale) + 85} `
+        coordonate += `L ${(j * (this.refs.grid.offsetWidth * (1 + (newGrid.branches.length * 5 / 100 * (newGrid.branches.length * 4 / 25)))) / newGrid.branches.length) + (320 + newGrid.branches.length * (1 + this.state.scale)) - (newGrid.branches.length * 25)} ${i * 60 / (0.1 * heightGrid * this.state.scale) + 85} `
       } else {
-        coordonate += `L ${(index[0].indexColumns * 800 / this.state.grid.branches.length) + 200 - this.state.grid.branches.length * 25} ${index[0].indexRows * 60 / (0.1 * heightGrid) + 85} `
+        coordonate += `L ${(index[0].indexColumns * (this.refs.grid.offsetWidth * (1 + (newGrid.branches.length * 5 / 100 * (newGrid.branches.length * 4 / 25)))) / newGrid.branches.length) + (320 + newGrid.branches.length * (1 + this.state.scale)) - (newGrid.branches.length * 25)} ${index[0].indexRows * 60 / (0.1 * heightGrid * this.state.scale) + 85} `
       }
     })
     return coordonate
   }
 
+  zoomed(context, newGrid) {
+    const scale = 1 - ((newGrid.branches.length) * 4.2 / 100)
+    context
+      .attr('transform', `scale(${scale})`)
+    this.setState({
+      scale
+    })
+  }
 
-  updateBranches() {
+
+  updateBranches(newGrid) {
     const g = this.state.gBranches
 
-    const rects = g.selectAll('rect').data(this.state.grid.branches)
+    const rects = g.selectAll('rect').data(newGrid.branches)
 
     // Enter
     rects.enter().append('rect')
       .attr('width', 100)
       .attr('height', 30)
-      .style('stroke-width', '2')
+      .style('stroke-width', '1')
       .style('stroke', '#000')
+      .style('opacity', '0')
 
       // Update
     rects
-      .attr('x', (d, i) => ((i * 800 / this.state.grid.branches.length) + 150 - this.state.grid.branches.length * 25))
+      .transition()
+      .duration(1000)
+      .style('opacity', '1')
+      .attr('x', (d, i) => ((i * (this.refs.grid.offsetWidth * (1 + (newGrid.branches.length * 5 / 100 * (newGrid.branches.length * 4 / 25)))) / newGrid.branches.length) + (270 + newGrid.branches.length * (1 + this.state.scale)) - (newGrid.branches.length * 25)))
       .attr('y', 1)
       .style('fill', ((d) => {
         if (d === 'develop' || d === 'master') { return this.state.colorCommit[d] }
@@ -213,52 +240,50 @@ class Vue extends Component {
       // Exit
     rects.exit().remove()
 
-    const text = g.selectAll('text').data(this.state.grid.branches)
+    const text = g.selectAll('text').data(newGrid.branches)
 
     // Enter
     text.enter().append('text')
-      .attr('x', (d, i) => ((i * 800 / this.state.grid.branches.length) + 200 - this.state.grid.branches.length * 25))
-      .attr('y', 21)
       .style('font-size', '15px')
-      .style('text-anchor', 'middle')
+      .style('opacity', '0')
 
       // Update
     text
+      .transition()
+      .duration(1000)
+      .style('opacity', '1')
       .text(d => d)
-      .attr('x', (d, i) => ((i * 800 / this.state.grid.branches.length) + 200 - this.state.grid.branches.length * 25))
+      .style('text-anchor', 'middle')
+      .attr('x', (d, i) => ((i * (this.refs.grid.offsetWidth * (1 + (newGrid.branches.length * 5 / 100 * (newGrid.branches.length * 4 / 25)))) / newGrid.branches.length) + (320 + newGrid.branches.length * (1 + this.state.scale)) - (newGrid.branches.length * 25)))
       .attr('y', 20)
 
       // Exit
     text.exit().remove()
   }
 
-  addPath(heightGrid) {
+  addPath(heightGrid, newGrid) {
     const g = this.state.gPaths
 
     const gPaths = g.selectAll('g')
-      .data(this.state.grid.columns)
+      .data(newGrid.columns)
     gPaths.enter().append('g')
 
     const path = gPaths.selectAll('path').data(d => d)
 
     // Enter
     path.enter().append('path')
+      .style('opacity', '0')
       .style('stroke', 'black')
-      .style('stroke-width', '2')
+      .style('stroke-width', '1')
       .style('fill', 'none')
-      .attr('stroke-dashoffset', 0)
 
-    const totalLength = path.node().getTotalLength()
     // Update
     path
-
-      .attr('stroke-dasharray', `${totalLength} ${totalLength}`)
-      .attr('stroke-dashoffset', totalLength)
       .transition()
-      .attr('d', (d, i, j) => this.getCoordonateParent(d, i, j, heightGrid))
       .duration(400)
       .ease('linear')
-      .attr('stroke-dashoffset', 0)
+      .style('opacity', '1')
+      .attr('d', (d, i, j) => this.getCoordonateParent(d, i, j, heightGrid, newGrid))
 
 
     // Exit
@@ -266,11 +291,11 @@ class Vue extends Component {
     gPaths.exit().remove()
   }
 
-  updateGrid(heightGrid) {
+  updateGrid(heightGrid, newGrid) {
     const g = this.state.gGrid
 
     const gColumns = g.selectAll('g')
-      .data(this.state.grid.columns)
+      .data(newGrid.columns)
 
     gColumns.enter().append('g')
 
@@ -279,15 +304,19 @@ class Vue extends Component {
     // Enter
     circle.enter().append('circle')
       .attr('r', () => 18)
-      .style('stroke-width', '2')
+      .style('opacity', '0')
+      .style('stroke-width', '1')
 
     // Update
     circle
       .style('fill-opacity', (d) => { if (!d.commit) { return 0 } })
-      .attr('cx', (d, i, j) => ((j * 800 / this.state.grid.branches.length) + 200 - this.state.grid.branches.length * 25))
-      .attr('cy', (d, i) => (i * 60 / (0.1 * heightGrid)) + 80)
+      .transition()
+      .duration(400)
+      .ease('sin')
+      .style('opacity', '1')
+      .attr('cx', (d, i, j) => ((j * (this.refs.grid.offsetWidth * (1 + (newGrid.branches.length * 5 / 100 * (newGrid.branches.length * 4 / 25)))) / newGrid.branches.length) + (320 + newGrid.branches.length * (1 + this.state.scale)) - (newGrid.branches.length * 25)))
+      .attr('cy', (d, i) => (i * 60 / (0.1 * heightGrid * this.state.scale)) + 80)
       .style('fill', (d) => {
-        console.log(d)
         if (d.branch === undefined) { return '#FFF' }
         if (d.branch === 'develop' || d.branch === 'master') { return this.state.colorCommit[d.branch] }
         const branche = d.branch.split('/')
@@ -303,13 +332,18 @@ class Vue extends Component {
 
     // Enter
     text.enter().append('text')
+      .style('opacity', '0')
       .style('text-anchor', 'middle')
       .style('font-size', '15px')
 
     text
+      .transition()
+      .duration(400)
+      .ease('sin')
+      .style('opacity', '1')
       .text(d => d.commit)
-      .attr('x', (d, i, j) => ((j * 800 / this.state.grid.branches.length) + 200 - this.state.grid.branches.length * 25))
-      .attr('y', (d, i) => (i * 60 / (0.1 * heightGrid)) + 85)
+      .attr('x', (d, i, j) => ((j * (this.refs.grid.offsetWidth * (1 + (newGrid.branches.length * 5 / 100 * (newGrid.branches.length * 4 / 25)))) / newGrid.branches.length) + (320 + newGrid.branches.length * (1 + this.state.scale)) - (newGrid.branches.length * 25)))
+      .attr('y', (d, i) => (i * 60 / (0.1 * heightGrid * this.state.scale)) + 85)
       .style('fill', (d) => {
         if (d.branch === undefined) { return '#FFF' }
         return '#000'
@@ -327,7 +361,7 @@ class Vue extends Component {
   render() {
     return (
       <div ref="grid" className="App-Graph">
-        {/* <svg width="800" height="600">
+        {/* <svg width="  (this.refs.grid.offsetWidth * (1 + (this.state.grid.branches.length * 4 / 100 * (this.state.grid.branches.length * 4 / 25))))" height="600">
             {this.renderGrid()}
           </svg> */}
       </div>
