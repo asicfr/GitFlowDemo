@@ -109,7 +109,7 @@ class Vue extends Component {
       .style('stroke-width', '2')
       .style('fill', 'none')
 
-      // Update
+    // Update
     path
       .attr('d', (d, i, j) => this.getCoordonateParent(d, i, j))
 
@@ -143,7 +143,7 @@ class Vue extends Component {
       .style('stroke', (d) => { if (d.commit) { return '#000' } })
       .style('opacity', '0')
 
-      // Update
+    // Update
     circle
       .transition()
       .duration(1000)
@@ -151,7 +151,7 @@ class Vue extends Component {
       .attr('cx', (d, i, j) => ((j * (this.refs.grid.offsetWidth * (1 + (this.state.grid.branches.length * 5 / 100 * (this.state.grid.branches.length * 4 / 25)))) / this.state.grid.branches.length) + (320 + this.state.grid.branches.length * (1 + this.state.scale)) - (this.state.grid.branches.length * 25)))
       .attr('cy', (d, i) => (i * 60) + 80)
 
-      // Exit
+    // Exit
     circle.exit().remove()
 
     const text = gColumns.selectAll('text').data(d => d)
@@ -162,12 +162,12 @@ class Vue extends Component {
       .style('font-size', '15px')
       .text(d => d.commit)
 
-      // Update
+    // Update
     text
       .attr('x', (d, i, j) => ((j * (this.refs.grid.offsetWidth * (1 + (this.state.grid.branches.length * 5 / 100 * (this.state.grid.branches.length * 4 / 25)))) / this.state.grid.branches.length) + (320 + this.state.grid.branches.length * (1 + this.state.scale)) - (this.state.grid.branches.length * 25)))
       .attr('y', (d, i) => (i * 60) + 85)
 
-      // Exit
+    // Exit
     text.exit().remove()
 
     this.zoomed(gGrid, this.state.grid)
@@ -176,7 +176,6 @@ class Vue extends Component {
       gGrid
     })
   }
-
 
   getCoordonateParent(d, i, j, heightGrid, newGrid) {
     if (Object.keys(d).length === 0) { return 0 }
@@ -210,7 +209,6 @@ class Vue extends Component {
     })
   }
 
-
   updateBranches(newGrid) {
     const g = this.state.gBranches
 
@@ -224,7 +222,7 @@ class Vue extends Component {
       .style('stroke', '#000')
       .style('opacity', '0')
 
-      // Update
+    // Update
     rects
       .transition()
       .duration(1000)
@@ -237,7 +235,7 @@ class Vue extends Component {
         return this.state.colorCommit[branche[0]]
       }))
 
-      // Exit
+    // Exit
     rects.exit().remove()
 
     const text = g.selectAll('text').data(newGrid.branches)
@@ -247,7 +245,7 @@ class Vue extends Component {
       .style('font-size', '15px')
       .style('opacity', '0')
 
-      // Update
+    // Update
     text
       .transition()
       .duration(1000)
@@ -257,7 +255,7 @@ class Vue extends Component {
       .attr('x', (d, i) => ((i * (this.refs.grid.offsetWidth * (1 + (newGrid.branches.length * 5 / 100 * (newGrid.branches.length * 4 / 25)))) / newGrid.branches.length) + (320 + newGrid.branches.length * (1 + this.state.scale)) - (newGrid.branches.length * 25)))
       .attr('y', 20)
 
-      // Exit
+    // Exit
     text.exit().remove()
   }
 
@@ -284,7 +282,6 @@ class Vue extends Component {
       .ease('linear')
       .style('opacity', '1')
       .attr('d', (d, i, j) => this.getCoordonateParent(d, i, j, heightGrid, newGrid))
-
 
     // Exit
     path.exit().remove()
@@ -329,7 +326,6 @@ class Vue extends Component {
 
     const text = gColumns.selectAll('text').data(d => d)
 
-
     // Enter
     text.enter().append('text')
       .style('opacity', '0')
@@ -353,10 +349,8 @@ class Vue extends Component {
 
     // Update
 
-
     gColumns.exit().remove()
   }
-
 
   render() {
     return (
