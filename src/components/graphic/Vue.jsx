@@ -39,7 +39,6 @@ class Vue extends Component {
       return a
     }, 0)
 
-    console.log(0.1 * height * this.state.scale)
     this.updateGrid(height, newProps.grid)
     this.addPath(height, newProps.grid)
     this.updateBranches(newProps.grid)
@@ -76,7 +75,6 @@ class Vue extends Component {
       .style('stroke-width', '1')
       .style('stroke', '#000')
 
-
     branches.append('text')
       .text((d, i) => this.state.grid.branches[i])
       .attr('x', (d, i) => ((i * (this.refs.grid.offsetWidth * (1 + (this.state.grid.branches.length * 5 / 100 * (this.state.grid.branches.length * 4 / 25)))) / this.state.grid.branches.length) + (320 + this.state.grid.branches.length * (1 + this.state.scale)) - (this.state.grid.branches.length * 25)))
@@ -102,7 +100,6 @@ class Vue extends Component {
       .append('g')
 
     const path = gColumns.selectAll('path').data(d => d)
-
     // Enter
     path.enter().append('path')
       .style('stroke', 'black')
@@ -252,6 +249,12 @@ class Vue extends Component {
       .style('opacity', '1')
       .text(d => d)
       .style('text-anchor', 'middle')
+      .style('font-size', ((d) => {
+        if (d.length > 20) { return 8 }
+        if (d.length > 15) { return 10 }
+        if (d.length > 10) { return 12 }
+        return 14
+      }))
       .attr('x', (d, i) => ((i * (this.refs.grid.offsetWidth * (1 + (newGrid.branches.length * 5 / 100 * (newGrid.branches.length * 4 / 25)))) / newGrid.branches.length) + (320 + newGrid.branches.length * (1 + this.state.scale)) - (newGrid.branches.length * 25)))
       .attr('y', 20)
 

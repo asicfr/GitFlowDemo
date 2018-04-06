@@ -1,5 +1,6 @@
 import analyzeCommand from './command'
 import grid from './grid'
+import exercice from './command/exercice'
 
 const gitflow = {
   graph: {
@@ -46,9 +47,11 @@ const controller = {
   dataControl: (text, gitflowUpdate, gridGit) => {
     const command = getCommand(text)
     try {
+      if (command.words[0] === 'exercice') {
+        return exercice(command)
+      }
       const gitFlowObject = analyzeCommand(command, gitflowUpdate)
       const newGrid = grid(gridGit, gitFlowObject, gitflowUpdate)
-      console.log(newGrid)
       return {
         gitFlowObject,
         gridGit: newGrid
