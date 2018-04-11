@@ -1,6 +1,7 @@
 import analyzeCommand from './command'
 import grid from './grid'
 import exercice from './command/exercice'
+import { EPROTONOSUPPORT } from 'constants'
 
 const gitflow = {
   graph: {
@@ -43,10 +44,30 @@ const getCommand = (txt) => {
   return command
 }
 
+const textHelp = 'Liste de commandes git & gitflow :\n\n'
+  + '- git commit\n'
+  + '- git checkout branchname\n'
+  + '- git checkout -b feature/branchename\n'
+  + '- git checkout -b release/branchename\n'
+  + '- git checkout -b hotfix/branchename\n'
+  + '- git merge branchname\n'
+  + '- git branch\n'
+  + '- git flow feature start namebranch\n'
+  + '- git flow hotfix start namebranch\n'
+  + '- git flow release start nameebranch\n'
+  + '- git flow feature finish namebranch\n'
+  + '- git flow hotfix finish namebranch\n'
+  + '- git flow release finish nameebranch\n'
+
+
 const controller = {
   dataControl: (text, gitflowUpdate, gridGit, exo) => {
     const command = getCommand(text)
     try {
+      if (command.words[0] === 'help') {
+        alert(textHelp)
+        throw new Error('')
+      }
       if (command.words[0] === 'exercice') {
         return exercice(command)
       }

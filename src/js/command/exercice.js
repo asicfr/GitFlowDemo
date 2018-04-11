@@ -10,7 +10,6 @@ const num = {
 const exercice = (command, gitflow, exo, gridGit) => {
   if (exo) {
     const gitFlowObject = analyzeCommand(command, gitflow)
-    console.log(num[exo].end.gitFlowObject.graph, gitFlowObject.graph)
     if (JSON.stringify(num[exo].end.gitFlowObject.graph) === JSON.stringify(gitFlowObject.graph)) {
       return num[exo].end
     }

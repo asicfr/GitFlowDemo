@@ -325,7 +325,7 @@ class Vue extends Component {
         return this.state.colorCommit[branche[0]]
       })
       .style('stroke', ((d) => {
-        console.log(d.commit, this.state.graph.currentCommit)
+
         if (d.commit === currentCommit) { return '#000' }
       }))
 
