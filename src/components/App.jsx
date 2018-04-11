@@ -9,15 +9,17 @@ class App extends Component {
     super(props)
     this.state = {
       gitflow: controller.init().gitflow,
-      grid: controller.init().gridInit
+      grid: controller.init().gridInit,
+      exercice: ''
     }
   }
   handleConsole = (command) => {
-    const dataflow = controller.dataControl(command, this.state.gitflow, this.state.grid)
+    const dataflow = controller.dataControl(command, this.state.gitflow, this.state.grid, this.state.exercice)
     console.log(dataflow.gitFlowObject)
     this.setState({
       gitflow: dataflow.gitFlowObject,
-      grid: dataflow.gridGit
+      grid: dataflow.gridGit,
+      exercice: dataflow.exercice
     })
   }
 
@@ -31,6 +33,7 @@ class App extends Component {
         />
         <VueUi
           txt={this.state.gitflow.console}
+          graph={this.state.gitflow.graph}
           grid={this.state.grid}
         />
       </div>

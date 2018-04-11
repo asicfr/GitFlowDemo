@@ -1,9 +1,11 @@
 {
   "name": "gitflowdemo",
-  "version": "1.1",
+  "version": "1.0.0",
   "private": true,
+  "homepage": "http://netoun.github.io/gitflowdemo",
   "dependencies": {
     "d3": "3.5.17",
+    "gh-pages": "^1.0.0",
     "immutable": "3.8.2",
     "material-ui": "^1.0.0-beta.27",
     "material-ui-icons": "1.0.0-beta.17",
@@ -20,7 +22,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "jest",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1",

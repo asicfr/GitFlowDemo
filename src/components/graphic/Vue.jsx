@@ -6,6 +6,7 @@ class Vue extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      graph: this.props.graph,
       grid: this.props.grid,
       context: null,
       gBranches: null,
@@ -32,6 +33,7 @@ class Vue extends Component {
 
   componentWillReceiveProps(newProps) {
     this.setState({
+      graph: newProps.graph,
       grid: newProps.grid
     })
     const height = this.state.grid.columns.reduce((a, b) => {
@@ -39,9 +41,9 @@ class Vue extends Component {
       return a
     }, 0)
 
-    this.updateGrid(height, newProps.grid)
+    this.updateGrid(height, newProps.grid, newProps.graph.currentCommit)
     this.addPath(height, newProps.grid)
-    this.updateBranches(newProps.grid)
+    this.updateBranches(newProps.grid, newProps.graph.currentBranch)
     this.zoomed(this.state.gGrid, newProps.grid)
     this.zoomed(this.state.gBranches, newProps.grid)
     this.zoomed(this.state.gPaths, newProps.grid)
@@ -51,7 +53,6 @@ class Vue extends Component {
     const context = d3.select(this.refs.grid).append('svg')
       .attr('width', '103%')
       .attr('height', '95%')
-
     this.setState({
       context
     })
@@ -73,7 +74,6 @@ class Vue extends Component {
       .attr('height', 30)
       .style('fill', (d => this.state.colorCommit[d]))
       .style('stroke-width', '1')
-      .style('stroke', '#000')
 
     branches.append('text')
       .text((d, i) => this.state.grid.branches[i])
@@ -137,7 +137,7 @@ class Vue extends Component {
       .style('fill', d => this.state.colorCommit[d.branch])
       .attr('r', () => 18)
       .style('stroke-width', '1')
-      .style('stroke', (d) => { if (d.commit) { return '#000' } })
+      .style('stroke', (d) => { if (d.commit) { return '' } })
       .style('opacity', '0')
 
     // Update
@@ -206,7 +206,7 @@ class Vue extends Component {
     })
   }
 
-  updateBranches(newGrid) {
+  updateBranches(newGrid, currentBranch) {
     const g = this.state.gBranches
 
     const rects = g.selectAll('rect').data(newGrid.branches)
@@ -216,7 +216,6 @@ class Vue extends Component {
       .attr('width', 100)
       .attr('height', 30)
       .style('stroke-width', '1')
-      .style('stroke', '#000')
       .style('opacity', '0')
 
     // Update
@@ -230,6 +229,9 @@ class Vue extends Component {
         if (d === 'develop' || d === 'master') { return this.state.colorCommit[d] }
         const branche = d.split('/')
         return this.state.colorCommit[branche[0]]
+      }))
+      .style('stroke', ((d) => {
+        if (d === currentBranch) { return '#000' }
       }))
 
     // Exit
@@ -291,7 +293,7 @@ class Vue extends Component {
     gPaths.exit().remove()
   }
 
-  updateGrid(heightGrid, newGrid) {
+  updateGrid(heightGrid, newGrid, currentCommit) {
     const g = this.state.gGrid
 
     const gColumns = g.selectAll('g')
@@ -322,7 +324,10 @@ class Vue extends Component {
         const branche = d.branch.split('/')
         return this.state.colorCommit[branche[0]]
       })
-      .style('stroke', (d) => { if (d.commit) { return '#000' } })
+      .style('stroke', ((d) => {
+        console.log(d.commit, this.state.graph.currentCommit)
+        if (d.commit === currentCommit) { return '#000' }
+      }))
 
     // Exit
     circle.exit().remove()
