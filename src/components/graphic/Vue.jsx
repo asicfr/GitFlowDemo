@@ -6,6 +6,7 @@ class Vue extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      graph: this.props.graph,
       grid: this.props.grid,
       context: null,
       gBranches: null,
@@ -32,6 +33,7 @@ class Vue extends Component {
 
   componentWillReceiveProps(newProps) {
     this.setState({
+      graph: newProps.graph,
       grid: newProps.grid
     })
     const height = this.state.grid.columns.reduce((a, b) => {
@@ -39,10 +41,9 @@ class Vue extends Component {
       return a
     }, 0)
 
-    console.log(0.1 * height * this.state.scale)
-    this.updateGrid(height, newProps.grid)
+    this.updateGrid(height, newProps.grid, newProps.graph.currentCommit)
     this.addPath(height, newProps.grid)
-    this.updateBranches(newProps.grid)
+    this.updateBranches(newProps.grid, newProps.graph.currentBranch)
     this.zoomed(this.state.gGrid, newProps.grid)
     this.zoomed(this.state.gBranches, newProps.grid)
     this.zoomed(this.state.gPaths, newProps.grid)
@@ -52,7 +53,6 @@ class Vue extends Component {
     const context = d3.select(this.refs.grid).append('svg')
       .attr('width', '103%')
       .attr('height', '95%')
-
     this.setState({
       context
     })
@@ -74,8 +74,6 @@ class Vue extends Component {
       .attr('height', 30)
       .style('fill', (d => this.state.colorCommit[d]))
       .style('stroke-width', '1')
-      .style('stroke', '#000')
-
 
     branches.append('text')
       .text((d, i) => this.state.grid.branches[i])
@@ -102,14 +100,13 @@ class Vue extends Component {
       .append('g')
 
     const path = gColumns.selectAll('path').data(d => d)
-
     // Enter
     path.enter().append('path')
       .style('stroke', 'black')
       .style('stroke-width', '2')
       .style('fill', 'none')
 
-      // Update
+    // Update
     path
       .attr('d', (d, i, j) => this.getCoordonateParent(d, i, j))
 
@@ -140,10 +137,10 @@ class Vue extends Component {
       .style('fill', d => this.state.colorCommit[d.branch])
       .attr('r', () => 18)
       .style('stroke-width', '1')
-      .style('stroke', (d) => { if (d.commit) { return '#000' } })
+      .style('stroke', (d) => { if (d.commit) { return '' } })
       .style('opacity', '0')
 
-      // Update
+    // Update
     circle
       .transition()
       .duration(1000)
@@ -151,7 +148,7 @@ class Vue extends Component {
       .attr('cx', (d, i, j) => ((j * (this.refs.grid.offsetWidth * (1 + (this.state.grid.branches.length * 5 / 100 * (this.state.grid.branches.length * 4 / 25)))) / this.state.grid.branches.length) + (320 + this.state.grid.branches.length * (1 + this.state.scale)) - (this.state.grid.branches.length * 25)))
       .attr('cy', (d, i) => (i * 60) + 80)
 
-      // Exit
+    // Exit
     circle.exit().remove()
 
     const text = gColumns.selectAll('text').data(d => d)
@@ -162,12 +159,12 @@ class Vue extends Component {
       .style('font-size', '15px')
       .text(d => d.commit)
 
-      // Update
+    // Update
     text
       .attr('x', (d, i, j) => ((j * (this.refs.grid.offsetWidth * (1 + (this.state.grid.branches.length * 5 / 100 * (this.state.grid.branches.length * 4 / 25)))) / this.state.grid.branches.length) + (320 + this.state.grid.branches.length * (1 + this.state.scale)) - (this.state.grid.branches.length * 25)))
       .attr('y', (d, i) => (i * 60) + 85)
 
-      // Exit
+    // Exit
     text.exit().remove()
 
     this.zoomed(gGrid, this.state.grid)
@@ -176,7 +173,6 @@ class Vue extends Component {
       gGrid
     })
   }
-
 
   getCoordonateParent(d, i, j, heightGrid, newGrid) {
     if (Object.keys(d).length === 0) { return 0 }
@@ -210,8 +206,7 @@ class Vue extends Component {
     })
   }
 
-
-  updateBranches(newGrid) {
+  updateBranches(newGrid, currentBranch) {
     const g = this.state.gBranches
 
     const rects = g.selectAll('rect').data(newGrid.branches)
@@ -221,10 +216,9 @@ class Vue extends Component {
       .attr('width', 100)
       .attr('height', 30)
       .style('stroke-width', '1')
-      .style('stroke', '#000')
       .style('opacity', '0')
 
-      // Update
+    // Update
     rects
       .transition()
       .duration(1000)
@@ -236,8 +230,11 @@ class Vue extends Component {
         const branche = d.split('/')
         return this.state.colorCommit[branche[0]]
       }))
+      .style('stroke', ((d) => {
+        if (d === currentBranch) { return '#000' }
+      }))
 
-      // Exit
+    // Exit
     rects.exit().remove()
 
     const text = g.selectAll('text').data(newGrid.branches)
@@ -247,17 +244,23 @@ class Vue extends Component {
       .style('font-size', '15px')
       .style('opacity', '0')
 
-      // Update
+    // Update
     text
       .transition()
       .duration(1000)
       .style('opacity', '1')
       .text(d => d)
       .style('text-anchor', 'middle')
+      .style('font-size', ((d) => {
+        if (d.length > 20) { return 8 }
+        if (d.length > 15) { return 10 }
+        if (d.length > 10) { return 12 }
+        return 14
+      }))
       .attr('x', (d, i) => ((i * (this.refs.grid.offsetWidth * (1 + (newGrid.branches.length * 5 / 100 * (newGrid.branches.length * 4 / 25)))) / newGrid.branches.length) + (320 + newGrid.branches.length * (1 + this.state.scale)) - (newGrid.branches.length * 25)))
       .attr('y', 20)
 
-      // Exit
+    // Exit
     text.exit().remove()
   }
 
@@ -285,13 +288,12 @@ class Vue extends Component {
       .style('opacity', '1')
       .attr('d', (d, i, j) => this.getCoordonateParent(d, i, j, heightGrid, newGrid))
 
-
     // Exit
     path.exit().remove()
     gPaths.exit().remove()
   }
 
-  updateGrid(heightGrid, newGrid) {
+  updateGrid(heightGrid, newGrid, currentCommit) {
     const g = this.state.gGrid
 
     const gColumns = g.selectAll('g')
@@ -322,13 +324,15 @@ class Vue extends Component {
         const branche = d.branch.split('/')
         return this.state.colorCommit[branche[0]]
       })
-      .style('stroke', (d) => { if (d.commit) { return '#000' } })
+      .style('stroke', ((d) => {
+        console.log(d.commit, this.state.graph.currentCommit)
+        if (d.commit === currentCommit) { return '#000' }
+      }))
 
     // Exit
     circle.exit().remove()
 
     const text = gColumns.selectAll('text').data(d => d)
-
 
     // Enter
     text.enter().append('text')
@@ -353,10 +357,8 @@ class Vue extends Component {
 
     // Update
 
-
     gColumns.exit().remove()
   }
-
 
   render() {
     return (
